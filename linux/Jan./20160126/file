@@ -1,0 +1,4 @@
+i am parent
+my info: pid = 7918,ppid = 6676,pgid = 7918
+i am a child.
+my info: pid = 7919,ppid = 1,pgid = 7919,spid = 7919 

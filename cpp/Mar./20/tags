@@ -1,0 +1,67 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+$	tags	/^Iterator	iterator\/iterator.h	\/^class Iterator{$\/;"	c	language:C++$/;"	m	language:C++	class:__anon1	file:	access:private
+Aggregate	iterator/iterator.h	/^class Aggregate{$/;"	c	language:C++
+Aggregate::createIterator	iterator/iterator.h	/^    virtual Iterator *createIterator() = 0;$/;"	p	language:C++	class:Aggregate	access:public	signature:()
+Aggregate::getItem	iterator/iterator.h	/^    virtual DATA getItem(int) = 0;$/;"	p	language:C++	class:Aggregate	access:public	signature:(int)
+Aggregate::size	iterator/iterator.h	/^    virtual int size() = 0;$/;"	p	language:C++	class:Aggregate	access:public	signature:()
+Aggregate::~Aggregate	iterator/iterator.h	/^    virtual ~Aggregate();$/;"	p	language:C++	class:Aggregate	access:public	signature:()
+ConcreteAggregate	iterator/iterator.h	/^    ConcreteAggregate(int);$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:(int)
+ConcreteAggregate	iterator/iterator.h	/^class ConcreteAggregate : public Aggregate{$/;"	c	language:C++	inherits:Aggregate
+ConcreteAggregate::ConcreteAggregate	iterator/iterator.h	/^    ConcreteAggregate(int);$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:(int)
+ConcreteAggregate::_pData	iterator/iterator.h	/^    DATA *_pData;$/;"	m	language:C++	class:ConcreteAggregate	access:private
+ConcreteAggregate::_size	iterator/iterator.h	/^    int _size;$/;"	m	language:C++	class:ConcreteAggregate	access:private
+ConcreteAggregate::createIterator	iterator/iterator.h	/^    virtual Iterator *createIterator();$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:()
+ConcreteAggregate::getItem	iterator/iterator.h	/^    virtual DATA getItem(int);$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:(int)
+ConcreteAggregate::size	iterator/iterator.h	/^    virtual int size();$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:()
+ConcreteAggregate::~ConcreteAggregate	iterator/iterator.h	/^    virtual ~ConcreteAggregate();$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:()
+ConcreteIterator	iterator/iterator.h	/^    ConcreteIterator(Aggregate *);$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:(Aggregate *)
+ConcreteIterator	iterator/iterator.h	/^class ConcreteIterator : public Iterator{$/;"	c	language:C++	inherits:Iterator
+ConcreteIterator::ConcreteIterator	iterator/iterator.h	/^    ConcreteIterator(Aggregate *);$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:(Aggregate *)
+ConcreteIterator::_idx	iterator/iterator.h	/^    int _idx;$/;"	m	language:C++	class:ConcreteIterator	access:private
+ConcreteIterator::_pAggregate	iterator/iterator.h	/^    Aggregate *_pAggregate;$/;"	m	language:C++	class:ConcreteIterator	access:private
+ConcreteIterator::currentItem	iterator/iterator.h	/^    virtual DATA currentItem();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+ConcreteIterator::first	iterator/iterator.h	/^    virtual void first();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+ConcreteIterator::isDone	iterator/iterator.h	/^    virtual bool isDone();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+ConcreteIterator::next	iterator/iterator.h	/^    virtual void next();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+ConcreteIterator::~ConcreteIterator	iterator/iterator.h	/^    virtual ~ConcreteIterator();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+DATA	iterator/iterator.h	/^typedef int DATA;$/;"	t	language:C++
+DATA	tags	/^DATA	iterator\/iterator.h	\/^typedef int DATA;$\/;"	t	language:C++$/;"	t	language:C++	file:
+Iterator	iterator/iterator.h	/^class Iterator;$/;"	x	language:C++
+Iterator	iterator/iterator.h	/^class Iterator{$/;"	c	language:C++
+Iterator::currentItem	iterator/iterator.h	/^    virtual DATA currentItem() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+Iterator::first	iterator/iterator.h	/^    virtual void first() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+Iterator::isDone	iterator/iterator.h	/^    virtual bool isDone() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+Iterator::next	iterator/iterator.h	/^    virtual void next() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+Iterator::~Iterator	iterator/iterator.h	/^    virtual ~Iterator();$/;"	p	language:C++	class:Iterator	access:public	signature:()
+__MY_ITERATOR_H__	iterator/iterator.h	2;"	d	language:C++
+__anon1::$	tags	/^Iterator	iterator\/iterator.h	\/^class Iterator{$\/;"	c	language:C++$/;"	m	language:C++	class:__anon1	file:	access:private
+_idx	iterator/iterator.h	/^    int _idx;$/;"	m	language:C++	class:ConcreteIterator	access:private
+_pAggregate	iterator/iterator.h	/^    Aggregate *_pAggregate;$/;"	m	language:C++	class:ConcreteIterator	access:private
+_pData	iterator/iterator.h	/^    DATA *_pData;$/;"	m	language:C++	class:ConcreteAggregate	access:private
+_size	iterator/iterator.h	/^    int _size;$/;"	m	language:C++	class:ConcreteAggregate	access:private
+createIterator	iterator/iterator.h	/^    virtual Iterator *createIterator() = 0;$/;"	p	language:C++	class:Aggregate	access:public	signature:()
+createIterator	iterator/iterator.h	/^    virtual Iterator *createIterator();$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:()
+createIterator	tags	/^createIterator	iterator\/iterator.h	\/^    virtual Iterator *createIterator() = 0;$\/;"	p	language:C++	class:Aggregate	access:public	signature:()$/;"	p	language:C++	file:	signature:()
+currentItem	iterator/iterator.h	/^    virtual DATA currentItem() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+currentItem	iterator/iterator.h	/^    virtual DATA currentItem();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+first	iterator/iterator.h	/^    virtual void first() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+first	iterator/iterator.h	/^    virtual void first();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+format	tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v	language:C++
+getItem	iterator/iterator.h	/^    virtual DATA getItem(int) = 0;$/;"	p	language:C++	class:Aggregate	access:public	signature:(int)
+getItem	iterator/iterator.h	/^    virtual DATA getItem(int);$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:(int)
+isDone	iterator/iterator.h	/^    virtual bool isDone() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+isDone	iterator/iterator.h	/^    virtual bool isDone();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+main	iterator/iterator.cc	/^int main(void)$/;"	f	language:C++	signature:(void)
+next	iterator/iterator.h	/^    virtual void next() = 0;$/;"	p	language:C++	class:Iterator	access:public	signature:()
+next	iterator/iterator.h	/^    virtual void next();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+size	iterator/iterator.h	/^    virtual int size() = 0;$/;"	p	language:C++	class:Aggregate	access:public	signature:()
+size	iterator/iterator.h	/^    virtual int size();$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:()
+~Aggregate	iterator/iterator.h	/^    virtual ~Aggregate();$/;"	p	language:C++	class:Aggregate	access:public	signature:()
+~ConcreteAggregate	iterator/iterator.h	/^    virtual ~ConcreteAggregate();$/;"	p	language:C++	class:ConcreteAggregate	access:public	signature:()
+~ConcreteIterator	iterator/iterator.h	/^    virtual ~ConcreteIterator();$/;"	p	language:C++	class:ConcreteIterator	access:public	signature:()
+~Iterator	iterator/iterator.h	/^    virtual ~Iterator();$/;"	p	language:C++	class:Iterator	access:public	signature:()

@@ -1,0 +1,134 @@
+    1  ping baidu.com
+    2  vi
+    3  sudo passwd root
+    4  ping baidu.com
+    5  ping www.baidu.com
+    6  vim
+    7  vi
+    8  sudo apt-get install vim
+    9  vim
+   10  apt-get update
+   11  sudo apt-get update
+   12  cls
+   13  ssh
+   14  ss
+   15  clean
+   16  clear
+   17  ps -elf|grep ssh
+   18  sudo apt-get ssh
+   19  sudo apt-get install ssh
+   20  ps -elf|grep ssh
+   21  ssh
+   22  su
+   23  sudo
+   24  su
+   25  gcc
+   26  gcc -v
+   27  /home
+   28  ./home
+   29  gcc
+   30  gcc -v
+   31  ifconfig
+   32  cd ./20160116
+   33  for file in *; do if grep -1 bill $file; the
+   34  clear
+   35  for file in *; do if grep -l bill $file; then more $file; fi; done
+   36  clear
+   37  ls
+   38  man more
+   39  ifconfig
+   40  python
+   41  ls
+   42  cd google-python-exercises/
+   43  ls
+   44  python hello.py
+   45  python hello.py Alice
+   46  vim hello.py 
+   47  more hello.py 
+   48  python
+   49  cd /home
+   50  cd jaygong
+   51  ls
+   52  vim .vimrc
+   53  ls
+   54  vim .vimrc
+   55  ls
+   56  vim 新建文本文档.txt 
+   57  vim .vimrc
+   58  ls
+   59  ls -a
+   60  vim .vimrc
+   61  vim 新建文本文档.txt 
+   62  vim .vimrc
+   63  vim 新建文本文档.txt 
+   64  vim .vimrc
+   65  vim 新建文本文档.txt 
+   66  vim .vimrc
+   67  ls
+   68  cd 20160118
+   69  list
+   70  ls
+   71  cd ~/20160116
+   72  ls
+   73  vim test
+   74  cd ..
+   75  ls
+   76  vim .vimrc
+   77  vim
+   78  vim .vimrc
+   79  vim
+   80  ls
+   81  unzip
+   82  man unzip
+   83  unzip omnicppcomplete-0.41.zip ./.vim
+   84  ls -a
+   85  pwd
+   86  unzip omnicppcomplete-0.41.zip .vim
+   87  ls
+   88  ls -a
+   89  touch .vim
+   90  ls -a
+   91  cd .vim
+   92  cat .vim
+   93  vim .vim
+   94  unzip omnicppcomplete-0.41.zip .vim
+   95  rm .vim
+   96  ls -a
+   97  mkdir .vim
+   98  ls -a
+   99  unzip omnicppcomplete-0.41.zip .vim
+  100  cd .vim
+  101  unzip ~/omnicppcomplete-0.41.zip 
+  102  ls
+  103  cd ./doc
+  104  ls
+  105  cd ~
+  106  cd 20160116
+  107  ls
+  108  vim test.c
+  109  vim
+  110  vi
+  111  ./program
+  112  cd ~
+  113  vim .vimrc
+  114  man zip
+  115  clear
+  116  cd 20160116
+  117  ls
+  118  ls -l
+  119  su
+  120  man echo
+  121  python
+  122  ls
+  123  vim first.c
+  124  vim
+  125  ls
+  126  vim test.c
+  127  cd /
+  128  ls
+  129  ps
+  130  cd ~
+  131  cd 20160116
+  132  ls -l | grep c$
+  133  history
+  134  history >history.txt

@@ -1,0 +1,95 @@
+ATEXIT(3)                           Linux Programmer's Manual                          ATEXIT(3)
+
+NNAAMMEE
+       atexit - register a function to be called at normal process termination
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ssttddlliibb..hh>>
+
+       iinntt aatteexxiitt((vvooiidd ((**_f_u_n_c_t_i_o_n))((vvooiidd))));;
+
+DDEESSCCRRIIPPTTIIOONN
+       The  aatteexxiitt() function registers the given _f_u_n_c_t_i_o_n to be called at normal process termi‐
+       nation, either via eexxiitt(3) or via return from the program's _m_a_i_n().  Functions so  regis‐
+       tered are called in the reverse order of their registration; no arguments are passed.
+
+       The  same function may be registered multiple times: it is called once for each registra‐
+       tion.
+
+       POSIX.1-2001 requires that an implementation allow at least AATTEEXXIITT__MMAAXX  (32)  such  func‐
+       tions  to be registered.  The actual limit supported by an implementation can be obtained
+       using ssyyssccoonnff(3).
+
+       When a child process is created via ffoorrkk(2), it inherits copies of its parent's registra‐
+       tions.   Upon  a  successful  call to one of the eexxeecc(3) functions, all registrations are
+       removed.
+
+RREETTUURRNN VVAALLUUEE
+       The aatteexxiitt() function returns the value 0 if successful; otherwise it returns  a  nonzero
+       value.
+
+CCOONNFFOORRMMIINNGG TTOO
+       SVr4, 4.3BSD, C89, C99, POSIX.1-2001.
+
+NNOOTTEESS
+       Functions  registered  using aatteexxiitt() (and oonn__eexxiitt(3)) are not called if a process termi‐
+       nates abnormally because of the delivery of a signal.
+
+       If one of the functions registered functions calls __eexxiitt(2), then any remaining functions
+       are  not  invoked,  and  the other process termination steps performed by eexxiitt(3) are not
+       performed.
+
+       POSIX.1-2001 says that the result of  calling  eexxiitt(3)  more  than  once  (i.e.,  calling
+       eexxiitt(3)  within a function registered using aatteexxiitt()) is undefined.  On some systems (but
+       not Linux), this can result in an infinite recursion; portable programs should not invoke
+       eexxiitt(3) inside a function registered using aatteexxiitt().
+
+       The  aatteexxiitt()  and  oonn__eexxiitt(3)  functions  register functions on the same list: at normal
+       process termination, the registered functions are invoked in reverse order of their  reg‐
+       istration by these two functions.
+
+       POSIX.1-2001  says that the result is undefined if lloonnggjjmmpp(3) is used to terminate execu‐
+       tion of one of the functions registered aatteexxiitt().
+
+   LLiinnuuxx nnootteess
+       Since glibc 2.2.3, aatteexxiitt() (and oonn__eexxiitt(3)) can be  used  within  a  shared  library  to
+       establish functions that are called when the shared library is unloaded.
+
+EEXXAAMMPPLLEE
+       #include <stdio.h>
+       #include <stdlib.h>
+       #include <unistd.h>
+
+       void
+       bye(void)
+       {
+           printf("That was all, folks\n");
+       }
+
+       int
+       main(void)
+       {
+           long a;
+           int i;
+
+           a = sysconf(_SC_ATEXIT_MAX);
+           printf("ATEXIT_MAX = %ld\n", a);
+
+           i = atexit(bye);
+           if (i != 0) {
+               fprintf(stderr, "cannot set exit function\n");
+               exit(EXIT_FAILURE);
+           }
+
+           exit(EXIT_SUCCESS);
+       }
+
+SSEEEE AALLSSOO
+       __eexxiitt(2), eexxiitt(3), oonn__eexxiitt(3)
+
+CCOOLLOOPPHHOONN
+       This  page  is part of release 3.74 of the Linux _m_a_n_-_p_a_g_e_s project.  A description of the
+       project, information about reporting bugs, and the latest version of this  page,  can  be
+       found at http://www.kernel.org/doc/man-pages/.
+
+Linux                                      2008-12-05                                  ATEXIT(3)

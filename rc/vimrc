@@ -1,0 +1,240 @@
+"----------------------------"
+"--------Global Config-------"
+"----------------------------"
+"测试硬连接
+"定义快捷键的前缀，<Leader>
+let mapleader=";"
+filetype on
+filetype plugin on
+filetype plugin indent on
+set nocompatible
+"开启语法高亮
+syntax enable
+"允许用指定语法高亮配色方案替换默认方案
+syntax on
+set nu
+set noswapfile
+set nobackup
+set mouse=a
+set history=1000
+set autoindent
+set cindent
+set smartindent
+set backspace=2
+"自适应不同语言的智能缩进
+filetype indent on
+"将制表符扩展为空格
+set expandtab
+set tabstop=4
+set shiftwidth=4
+"将连续数量的空格视为一个制表符
+set softtabstop=4
+set linebreak
+set showmatch
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set encoding=utf-8
+"开启实时搜索
+set incsearch
+set hlsearch
+"搜索时大小写不敏感
+set ignorecase
+"vim自身命令行命令行模式智能补全
+set wildmenu
+"显示状态栏
+set laststatus=2
+set cursorline
+"set cursorcolumn
+
+"close default mode indicator
+set noshowmode
+set ruler
+"禁止折行
+set nowrap
+nmap <silent> <leader>ee :!vim ~/.vimrc<CR>
+"nmap <silent> <leader>ss :source ~/.vimrc<CR>
+nmap <leader>q :q<CR>
+nnoremap nw <C-W><C-W>
+
+
+"----------Vundle------------"
+"----------------------------"
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#rc()
+
+" Let Vundle manage itself
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'godlygeek/csapprox'
+
+"Plugin 'SirVer/ultisnips'
+Plugin 'Mizuchi/STL-Syntax'
+Plugin 'vim-scripts/a.vim'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+
+Plugin 'majutsushi/tagbar'
+
+call vundle#end()
+"?
+let g:auto_save = 1
+
+"----------------------------"
+"-------- tarbar      -------"
+"----------------------------"
+
+let tagbar_left=1
+nnoremap <leader>tl :TagbarToggle<CR>
+let tagbar_width=32
+let g:tagbar_compact=1
+let g:tagbar_type_cpp = {
+    \ 'kinds' : [
+        \ 'd:macros:1',
+        \ 'g:enums',
+        \ 't:typedefs:0:0',
+        \ 'e:enumerators:0:0',
+        \ 'n:namespaces',
+        \ 'c:classes',
+        \ 's:structs',
+        \ 'u:unions',
+        \ 'f:functions',
+        \ 'm:members:0:0',
+        \ 'v:global:0:0',
+        \ 'x:external:0:0',
+        \ 'l:local:0:0'
+     \ ],
+     \ 'sro'        : '::',
+     \ 'kind2scope' : {
+         \ 'g' : 'enum',
+         \ 'n' : 'namespace',
+         \ 'c' : 'class',
+         \ 's' : 'struct',
+         \ 'u' : 'union'
+     \ },
+     \ 'scope2kind' : {
+         \ 'enum'      : 'g',
+         \ 'namespace' : 'n',
+         \ 'class'     : 'c',
+         \ 'struct'    : 's',
+         \ 'union'     : 'u'
+     \ }
+\ }
+
+
+"----------------------------"
+"-------- snippets    -------"
+"----------------------------"
+"let g:UltiSnipsSnippetDirectories=["mysnippets"]
+"let g:UltiSnipsExpandTrigger="<leader><tab>"
+"let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+
+"----------------------------"
+"-------- solarized   -------"
+"----------------------------"
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
+"airline_theme 设置
+let g:airline_theme='jellybeans'
+let g:bufferline_echo=0
+
+"----------------------------"
+"--------     a.vim   -------"
+"----------------------------"
+nmap <leader>ch :A<CR>
+nmap <leader>sch :AS<CR>
+
+"----------------------------"
+"--------     YCM     -------"
+"----------------------------"
+
+let g:ycm_confirm_extra_conf = 0
+
+let g:ycm_collect_identifiers_from_tags_files = 1
+"set tags+=/data/misc/software/misc./vim/stdcpp.tags
+
+set completeopt-=preview
+
+inoremap <leader>; <C-x><C-o>
+let g:ycm_cache_omnifunc = 0
+"语法关键字补全
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+"在字符串输入中也能
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>je :YcmCompleter GoToDefinition<CR>
+
+"----------------------------"
+"--------Indent Guides-------"
+"----------------------------"
+"随vim自启动
+let g:indent_guides_enable_on_vim_startup=1
+
+let g:indent_guides_start_level=2
+
+let g:indent_guides_guide_size=1
+
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+
+
+
+"----------------------------"
+"--------    CtrlP    -------"
+"----------------------------"
+let g:ctrlp_map = ',,'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_open_multiple_files = 'v'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git)$',
+  \ 'file': '\v\.(log|jpg|png|jpeg)$',
+  \ }
+
+
+"----------------------------"
+"--------  Syntastic  -------"
+"----------------------------"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let b:syntastic_cpp_cflags = '-std=c++11 -w'
+
+"----------------------------"
+"-----------autocmd----------"
+"autocmd BufNewFile *.[ch],*.hpp,*.cpp,*.cc exec ":call Addreadme()"
+autocmd BufNewFile *.hpp,*.cpp,*.cc exec ":call AddReadmeCC()"
+
+function AddReadmeCC()
+    call setline(1, "/*")
+	call append(1, "** @file    " .expand("%:t"))
+	call append(2, "** @author  jaygong(gongjian0309@gmail.com)")
+	call append(3, "** @date    ".strftime("%Y-%m-%d %H:%M:%S"))
+	call append(4, "*/")
+	call append(5, " ")
+	call append(6, "#include <iostream>")
+	call append(7, " ")
+	call append(8, "using std::cout;")
+	call append(9, "using std::endl;")
+	
+endf
+
+"set maplearder
+"let  mapleader = ","
+
