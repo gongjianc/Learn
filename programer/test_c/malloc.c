@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 char *test_malloc()
 {
     char *p = malloc(16);
