@@ -44,7 +44,5 @@ unsigned short InetAddress::port() const
     return ntohs(_addr.sin_port);
 }
 
-
-
-};
+}
 

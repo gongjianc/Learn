@@ -115,6 +115,25 @@ void Socket::shutdownWrite()
     }
 }
 
+InetAddress Socket::getLocalAddr(int fd)
+{
+    struct sockaddr_in addr;
+    socklen_t len = sizeof(struct sockaddr_in);
+    int ret = ::getsockname(fd, (struct sockaddr *)&addr, &len);
+    if(-1 == ret)
+        perror("getsockname");
+    return InetAddress(addr);
+}
 
-};//end namespace
+InetAddress Socket::getPeerAddr(int fd)
+{
+    struct sockaddr_in addr;
+    socklen_t len = sizeof(struct sockaddr_in);
+    int ret = ::getpeername(fd, (struct sockaddr *)&addr, &len);
+    if(-1 == ret)
+        perror("getpeername");
+    return InetAddress(addr);
+}
+
+}//end namespace
 

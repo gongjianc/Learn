@@ -19,6 +19,6 @@ public:
 private:
     struct sockaddr_in _addr;
 };
-};//end 
+}//end 
 
 #endif
