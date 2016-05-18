@@ -9,7 +9,7 @@ class MyConf{
 public:
     MyConf(const std::string &);
     bool init();
-    std::map<std::string, std::string> &getConfig()
+    std::map<std::string, std::string> &getMap()
     {
         return _map;
     }

@@ -80,17 +80,3 @@ void MyDict::record_to_index(int idx)
         _index_table[key].insert(idx);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

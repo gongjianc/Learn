@@ -28,6 +28,10 @@ InetAddress::InetAddress(const char *ip, unsigned short port)
     _addr.sin_addr.s_addr = inet_addr(ip);
 }
 
+InetAddress::InetAddress(const struct sockaddr_in &addr)
+: _addr(addr)
+{}
+
 struct sockaddr_in *InetAddress::getInetAddressPtr()
 {
     //返回的是指针

@@ -20,7 +20,11 @@ public:
     void setCloseCallback(TcpServerCallback cb);
 private:
     Socket _sock;
+    EpollPoller _epoll;
 
+    TcpServerCallback _onConnection;
+    TcpServerCallback _onMessage;
+    TcpServerCallback _onClose;
 }; 
 
 }
