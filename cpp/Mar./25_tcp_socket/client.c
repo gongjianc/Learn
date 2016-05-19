@@ -17,7 +17,7 @@ void do_service(int sockfd);
 
 int main(void)
 {
-    int peerfd = socket(PF_INET, SOCK_STREAM, 0);
+    int peerfd = socket(AF_INET, SOCK_STREAM, 0);
 
     if(peerfd == -1)
         ERR_EXIT("socket");
@@ -32,6 +32,7 @@ int main(void)
     if(connect(peerfd, (struct sockaddr*)&addr, len) == -1)
         ERR_EXIT("Connect");
 
+    printf("connect success\n");
 	char buf[1024];
 	memset(buf, 0, sizeof(buf));
 	read(peerfd, buf, sizeof(buf));
@@ -39,8 +40,6 @@ int main(void)
     do_service(peerfd);
     return 0;
 }
-
-
 
 void do_service(int sockfd)
 {

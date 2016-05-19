@@ -4,22 +4,27 @@
 #include "Noncopyable.h"
 #include <pthread.h>
 #include <functional>
+#include "Cache.h"
 
 namespace wd{
 
 class Thread : Noncopyable{
 public:
-    typedef std::function<void()> ThreadCallback;
-    Thread(ThreadCallback cb);
+    typedef std::function<void(Cache &)> ThreadCallback;
+    Thread(ThreadCallback cb, Cache &cache);
     ~Thread();
 
     void start();
     void join();
+
+    ::Cache &getCache()
+    { return _cache; }
     static void *threadFunc(void *arg);
 private:
     pthread_t _pthId;
     bool _isRunning;
     ThreadCallback _cb;
+    Cache _cache;
 };
 
 }

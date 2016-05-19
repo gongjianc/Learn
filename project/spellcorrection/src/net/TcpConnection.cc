@@ -34,6 +34,7 @@ std::string TcpConnection::receive()
 
 void TcpConnection::send(const std::string &msg)
 {
+    //std::cout << "TcpConnection::send" << std::endl;
     _sockIO.writen(msg.c_str(), msg.size());
 }
 
@@ -49,8 +50,8 @@ std::string TcpConnection::toString() const
 {
     std::ostringstream oss;
     oss << _localAddr.ip() << ":" << _localAddr.port()
-        << "--->" << _peerAddr.ip() << _peerAddr.port()
-        << " ";
+        << "--->" << _peerAddr.ip() << ":" 
+        << _peerAddr.port() << " ";
     return oss.str();
 }
 
@@ -76,9 +77,10 @@ void TcpConnection::setCloseCallback(TcpConnectionCallback cb)
 
 void TcpConnection::handleConnectionCallback()
 {
-    if(_onConnectionCb)
+    if(_onConnectionCb){
         //这个是？
         _onConnectionCb(shared_from_this());
+    }
 }
 
 void TcpConnection::handleMessageCallback()

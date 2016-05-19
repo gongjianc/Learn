@@ -33,6 +33,8 @@ flags = [
 '-isystem',
 './include/net',
 '-isystem',
+'./include/timer',
+'-isystem',
 './include/threadpool'
 ]
 

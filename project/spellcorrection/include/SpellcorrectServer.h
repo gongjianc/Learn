@@ -4,6 +4,7 @@
 #include "MyConf.h"
 #include "TcpServer.h"
 #include "ThreadPool.h"
+#include "TimerThread.h"
 #include <string>
 
 namespace wd{
@@ -19,6 +20,7 @@ private:
     MyConf _conf;
     TcpServer _tcpSever;
     ThreadPool _threadpool;
+    TimerThread _timer;
 };
 
 }
