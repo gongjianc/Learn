@@ -25,8 +25,8 @@ int main(void)
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof addr);
     addr.sin_family = AF_INET;
-    //addr.sin_addr.s_addr = inet_addr("192.168.4.159"); //localhost
-    addr.sin_addr.s_addr = INADDR_ANY; //localhost
+    addr.sin_addr.s_addr = inet_addr("10.0.0.15"); //localhost
+    //addr.sin_addr.s_addr = INADDR_ANY; //localhost
     addr.sin_port = htons(8888);
     socklen_t len = sizeof addr;
     if(connect(peerfd, (struct sockaddr*)&addr, len) == -1)
@@ -66,7 +66,7 @@ void do_service(int sockfd)
             exit(EXIT_SUCCESS);
         }
 
-        printf("%s", recvbuf);
+        printf("@server: %s\n", recvbuf);
 
         memset(recvbuf, 0, sizeof recvbuf);
         memset(sendbuf, 0, sizeof sendbuf);
