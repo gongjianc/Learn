@@ -54,6 +54,7 @@ ssize_t SocketIO::writen(const char *buf, size_t count)
         pBuf += ret;
         nleft -= ret;
     }
+    //printf("SocketIO::writen\n");
     return (count - nleft);
 }
 
@@ -75,7 +76,7 @@ ssize_t SocketIO::readline(char *buf, size_t max)
     while(nleft > 0){
         ssize_t nread = readPeek(pBuf, nleft);
 
-        if(nread < 0)
+        if(nread <= 0)
             return nread;
 
         for(int idx = 0; idx != nread; ++idx){

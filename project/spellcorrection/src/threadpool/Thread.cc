@@ -9,11 +9,12 @@
 
 namespace wd{
 
-Thread::Thread(ThreadCallback cb)
+Thread::Thread(ThreadCallback cb, Cache &cache)
 //为什么是0?
 : _pthId(0)
 , _isRunning(false)
 , _cb(cb)
+, _cache(cache)
 {}
 
 Thread::~Thread()
@@ -38,7 +39,7 @@ void * Thread::threadFunc(void *arg)
 {
     Thread *pThread = static_cast<Thread *>(arg);
     if(pThread)
-        pThread->_cb();
+        pThread->_cb(pThread->_cache);
 }
 
 }

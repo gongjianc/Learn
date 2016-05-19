@@ -2,6 +2,8 @@
 #define __MY_THREADPOOL_H__
 
 #include "Buffer.h"
+#include "Cache.h"
+#include "MyConf.h"
 #include <vector>
 #include <functional>
 
@@ -10,14 +12,19 @@ namespace wd{
 class Thread;
 class ThreadPool{
 public:
-    typedef std::function<void()> Task;
-    ThreadPool(int threadNum, int bufSize);
+    //Task 是函数对象
+    typedef std::function<void(Cache &)> Task;
+    ThreadPool(int threadNum, int bufSize, MyConf &conf);
     ~ThreadPool();
 
     void start();
     void stop();
+
     void addTask(Task ptask);
-    void threadFunc();
+    void threadFunc(Cache &cache);
+
+    void readCache();
+    void updateCache();
 private:
     Task getTask();
 private:
@@ -27,6 +34,9 @@ private:
     int _bufSize;
     Buffer _buf;
     bool _isExit;
+    //Cache 有初始化构造函数
+    Cache _cache;
+    MyConf &_conf;
 };
 }
 

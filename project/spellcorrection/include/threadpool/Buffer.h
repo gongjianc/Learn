@@ -3,6 +3,7 @@
 
 #include "MutexLock.h"
 #include "Condition.h"
+#include "Cache.h"
 
 #include <queue>
 #include <functional>
@@ -12,7 +13,7 @@ namespace wd{
 class Task;
 class Buffer{
 public:
-    typedef std::function<void()> Task;
+    typedef std::function<void(Cache &)> Task;
     Buffer(int size);
     ~Buffer();
 

@@ -11,6 +11,7 @@
 #include <string.h>
 #include <errno.h>
 #include <assert.h>
+#include <iostream>
 
 const int kInitNumber = 2048;
 
@@ -102,7 +103,7 @@ void EpollPoller::waitEpollfd()
 {
     int nready;
     do{
-        nready = epoll_wait(_epollfd, &(*_eventList.begin()), _eventList.size(), 5000);
+        nready = ::epoll_wait(_epollfd, &(*_eventList.begin()), _eventList.size(), 5000);
     }while(nready == -1 && errno == EINTR);
 
     if(-1 == nready){
@@ -115,7 +116,7 @@ void EpollPoller::waitEpollfd()
         if(nready == static_cast<int>(_eventList.size()))
             _eventList.resize(nready * 2);
         for(int idx = 0; idx != nready; ++idx){
-            //处理旧连接
+            //处理新连接
             if(_eventList[idx].data.fd == _listenfd){
                 if(_eventList[idx].events & EPOLLIN)
                     handleConnection();
@@ -138,7 +139,7 @@ void EpollPoller::handleConnection()
     addEpollFd(_epollfd, peerfd);
 
     TcpConnectionPtr pConn(new TcpConnection(peerfd));
-    pConn->setCloseCallback(_onConnection);
+    pConn->setConnectionCallback(_onConnection);
     pConn->setMessageCallback(_onMessage);
     pConn->setCloseCallback(_onClose);
     _connMap[peerfd] = pConn;
