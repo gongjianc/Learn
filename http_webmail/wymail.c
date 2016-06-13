@@ -1,41 +1,35 @@
-#include <stdio.h>
-#include <strings.h>
-#include <stdlib.h>
-#include "webmail_attach.h"
-#include "webmail_parser.h"
-
- /**
- * @brief c_malloc get the room to store the data dynamiclly
- *
- * @param obj
- * @param len
- */
-int c_malloc(void **obj,int len)
-{
-    //  log_printf(ZLOG_LEVEL_DEBUG, "c_malloc start ....");
-    *obj=(char*)malloc(len);
-    if(*obj==NULL){
-        return -1;
+     /**
+     * @brief c_malloc get the room to store the data dynamiclly
+     *
+     * @param obj
+     * @param len
+     */
+    int c_malloc(void **obj,int len)
+    {
+        //  log_printf(ZLOG_LEVEL_DEBUG, "c_malloc start ....");
+        *obj=(char*)malloc(len);
+        if(*obj==NULL){
+            return -1;
+        }
+        memset(*obj,'\0',len);
+        //  log_printf(ZLOG_LEVEL_DEBUG, "c_malloc end ....");
+        return 0;
     }
-    memset(*obj,'\0',len);
-    //  log_printf(ZLOG_LEVEL_DEBUG, "c_malloc end ....");
-    return 0;
-}
 
-/**
- * @brief c_free free the space which has been apply;
- *
- * @param obj
- */
-void c_free(char**obj)
-{
-    //  log_printf(ZLOG_LEVEL_DEBUG, "c_free start ....");
-    if(*obj!=NULL){
-        free (*obj);
-        *obj=NULL;
+    /**
+     * @brief c_free free the space which has been apply;
+     *
+     * @param obj
+     */
+    void c_free(char**obj)
+    {
+        //  log_printf(ZLOG_LEVEL_DEBUG, "c_free start ....");
+        if(*obj!=NULL){
+            free (*obj);
+            *obj=NULL;
+        }
+        //  log_printf(ZLOG_LEVEL_DEBUG, "c_free end ....");
     }
-    //  log_printf(ZLOG_LEVEL_DEBUG, "c_free end ....");
-}
 
 
 
@@ -1354,10 +1348,13 @@ webmail_pro_jsonstr_fail:
         http_session = (dlp_http_post_head* )dlp_http->http;
         webmail_string_and_len *StoMB = init_webmail_string_and_len();
         if(StoMB == NULL)goto webmail_mail_fail;//lj
+        
         FILE *pr=NULL;
         /*初始化存放解析后的邮件信息*/
         dlp_webmail_info *webmail = NULL;
-        if(c_malloc((void **)&webmail,sizeof(dlp_webmail_info)) ==-1) goto webmail_mail_fail;//lj
+        if(c_malloc((void **)&webmail,sizeof(dlp_webmail_info)) ==-1) 
+            goto webmail_mail_fail;//lj
+
         webmail->filenode = init_att_nodelist();
         memset(webmail->Time, '\0', sizeof(webmail->Time));
         memset(webmail->boundary,'\0',sizeof (webmail->boundary));
@@ -1370,10 +1367,12 @@ webmail_pro_jsonstr_fail:
 
         /*存放host、origin、regerer信息，便于之后判断时否为webmail以及时何种邮箱流*/
         char host_ori_ref[HTTP_FILE_HOST_MAX+HTTP_FILE_ORIGIN_MAX+HTTP_FILE_REFERER_MAX] = {0};//存放提取前五个post的host、origine、referer放到一个指针里
+
         if(http_session == NULL){
             log_printf(ZLOG_LEVEL_ERROR, "%s__%d\n", __FILE__, __LINE__);
             goto webmail_mail_fail;
         }
+        
         strcat(host_ori_ref, http_session->host);
         strcat(host_ori_ref, http_session->origin);
         strcat(host_ori_ref, http_session->referer);
@@ -1465,33 +1464,3 @@ webmail_mail_fail:
         //log_printf(ZLOG_LEVEL_ERROR, " webmail_mail fail end ....");
         return -1;
     }
-    
-
-
-int main(void)
-{
-    FILE *fp = fopen("163mail.txt", "r");
-    if(NULL == fp){
-        perror("fopen");
-        return -1;
-    }else
-        printf("success \n");
-
-    char *str = (char *)malloc(4096);
-    bzero(str, sizeof(str));
-
-    //读取文件
-    fread(str, 1024, 4, fp);
-    printf("%s", str);
-
-    webmail_string_and_len *StoMB = init_webmail_string_and_len();
-
-
-    dlp_webmail_info *webmail = NULL;
-    
-    
-
-    free(str);
-    fclose(fp);
-    return 0;
-}
