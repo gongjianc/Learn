@@ -147,7 +147,7 @@ typedef struct mail{
 }dlp_webmail_info;
 
 /*生成由四元组拼接成的字符串*/
-int get_tuple_name(HttpSession*dlp_http , char tuple_name[128]  );
+int get_tuple_name(HttpSession* dlp_http , char tuple_name[128]  );
 
 /*生成以四元组拼接成的字符串*/
 char *itoa(int num,char*str,int radix);

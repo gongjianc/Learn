@@ -2238,6 +2238,7 @@ test_preserve_data (void)
   char my_data[] = "application-specific data";
   http_parser parser;
   parser.data = my_data;
+  //测试http_parser_init是否可以保存数据
   http_parser_init(&parser, HTTP_REQUEST);
   if (parser.data != my_data) {
     printf("\n*** parser.data not preserved accross http_parser_init ***\n\n");
@@ -3307,7 +3308,7 @@ main (void)
 {
   parser = NULL;
   int i, j, k;
-  int request_count;
+  int request_count; 
   int response_count;
   unsigned long version;
   unsigned major;

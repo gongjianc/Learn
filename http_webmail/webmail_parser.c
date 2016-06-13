@@ -6,7 +6,7 @@ pthread_mutex_t lockqq=PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t locksohu=PTHREAD_MUTEX_INITIALIZER;
 
 /*生成由四元组拼接成的字符串*/
-int get_tuple_name(HttpSession*dlp_http , char tuple_name[128]  ){
+int get_tuple_name(HttpSession *dlp_http , char tuple_name[128]  ){
 char tmp[128]= {};
 itoa((dlp_http->key).source , tmp ,16);
 strcat(tuple_name, tmp);
