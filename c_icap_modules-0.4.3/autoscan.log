@@ -1,0 +1,75 @@
+autoscan: warning: missing AC_CHECK_FUNCS([memset]) wanted by: 
+	services/webmail_parser/http_parser.c:1977
+	services/webmail_parser/ser_webmail_parser.c:246
+autoscan: warning: missing AC_CHECK_FUNCS([strtoul]) wanted by: 
+	services/webmail_parser/http_parser.c:2220
+autoscan: warning: missing AC_CHECK_HEADERS([limits.h]) wanted by: 
+	services/webmail_parser/http_parser.c:30
+autoscan: warning: missing AC_CHECK_HEADERS([malloc.h]) wanted by: 
+	common.h:45
+autoscan: warning: missing AC_CHECK_HEADERS([stddef.h]) wanted by: 
+	services/webmail_parser/http_parser.h:35
+	services/webmail_parser/http_parser.c:26
+autoscan: warning: missing AC_CHECK_HEADERS([sys/param.h]) wanted by: 
+	common.h:41
+autoscan: warning: missing AC_FUNC_MALLOC wanted by: 
+	services/webmail_parser/ser_webmail_parser.c:157
+autoscan: warning: missing AC_PROG_CXX wanted by: 
+	ltmain.sh:960
+	ltmain.sh:1380
+	ltmain.sh:1383
+	ltmain.sh:1388
+	ltmain.sh:1388
+	ltmain.sh:1398
+	ltmain.sh:1402
+	ltmain.sh:1405
+	ltmain.sh:1405
+	ltmain.sh:2442
+autoscan: warning: missing AC_PROG_RANLIB wanted by: 
+	ltmain.sh:2455
+autoscan: warning: missing AC_TYPE_INT16_T wanted by: 
+	services/webmail_parser/http_parser.h:38
+autoscan: warning: missing AC_TYPE_INT32_T wanted by: 
+	services/webmail_parser/http_parser.h:40
+autoscan: warning: missing AC_TYPE_INT64_T wanted by: 
+	services/webmail_parser/http_parser.h:42
+autoscan: warning: missing AC_TYPE_INT8_T wanted by: 
+	services/webmail_parser/http_parser.h:36
+	services/webmail_parser/http_parser.c:180
+	services/webmail_parser/http_parser.c:582
+autoscan: warning: missing AC_TYPE_SIZE_T wanted by: 
+	services/webmail_parser/http_parser.h:83
+	services/webmail_parser/http_parser.h:288
+	services/webmail_parser/http_parser.h:291
+	services/webmail_parser/http_parser.h:312
+	services/webmail_parser/http_parser.c:576
+	services/webmail_parser/http_parser.c:579
+	services/webmail_parser/http_parser.c:2066
+	services/webmail_parser/http_parser.c:2135
+	services/webmail_parser/ser_webmail_parser.c:94
+	services/webmail_parser/ser_webmail_parser.c:100
+	services/webmail_parser/ser_webmail_parser.c:106
+	services/webmail_parser/ser_webmail_parser.c:112
+	services/webmail_parser/ser_webmail_parser.c:257
+autoscan: warning: missing AC_TYPE_UINT16_T wanted by: 
+	services/webmail_parser/http_parser.h:39
+	services/webmail_parser/http_parser.h:263
+	services/webmail_parser/http_parser.h:264
+	services/webmail_parser/http_parser.h:267
+	services/webmail_parser/http_parser.h:268
+	services/webmail_parser/http_parser.c:2227
+autoscan: warning: missing AC_TYPE_UINT32_T wanted by: 
+	services/webmail_parser/http_parser.h:41
+	services/webmail_parser/http_parser.h:209
+autoscan: warning: missing AC_TYPE_UINT64_T wanted by: 
+	services/webmail_parser/http_parser.h:43
+	services/webmail_parser/http_parser.h:210
+	services/webmail_parser/http_parser.c:1502
+	services/webmail_parser/http_parser.c:1719
+	services/webmail_parser/http_parser.c:1720
+	services/webmail_parser/http_parser.c:1783
+	services/webmail_parser/http_parser.c:1847
+	services/webmail_parser/http_parser.c:1848
+autoscan: warning: missing AC_TYPE_UINT8_T wanted by: 
+	services/webmail_parser/http_parser.h:37
+	services/webmail_parser/http_parser.c:199

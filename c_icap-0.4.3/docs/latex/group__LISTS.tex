@@ -1,0 +1,249 @@
+\hypertarget{group__LISTS}{
+\section{Lists API}
+\label{group__LISTS}\index{Lists API@{Lists API}}
+}
+
+
+Lists for storing items, and can grow unlimited.  
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__LISTS_ga77f44d5b3bada068ec700d4b281c3a1f}{ci\_\-list\_\-first}(list)~(list \&\& (list)-\/$>$items \&\& (((list)-\/$>$cursor = (list)-\/$>$items-\/$>$next) != NULL $|$$|$ 1) ? (list)-\/$>$items-\/$>$item : NULL)
+\begin{DoxyCompactList}\small\item\em Gets the first item of the list and updates the list cursor to the next item. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{group__LISTS_gaeb3e08e79c3a29024821a46bb76d9870}{ci\_\-list\_\-next}(list)~(((list)-\/$>$tmp = (list)-\/$>$cursor) != NULL \&\& (((list)-\/$>$cursor = (list)-\/$>$cursor-\/$>$next) != NULL $|$$|$ 1) ? (list)-\/$>$tmp-\/$>$item : NULL)
+\begin{DoxyCompactList}\small\item\em Return the next item of the list and updates the list cursor to the next item. \item\end{DoxyCompactList}\item 
+\hypertarget{group__LISTS_gaf391ee530c48d632527eefc229301101}{
+\#define \hyperlink{group__LISTS_gaf391ee530c48d632527eefc229301101}{ci\_\-list\_\-head}(list)~(list \&\& list-\/$>$items != NULL ? list-\/$>$items-\/$>$item : NULL)}
+\label{group__LISTS_gaf391ee530c48d632527eefc229301101}
+
+\begin{DoxyCompactList}\small\item\em Return the head of the list. \item\end{DoxyCompactList}\item 
+\hypertarget{group__LISTS_ga192e5880c2b4672ac2e4027ea1a8a9af}{
+\#define \hyperlink{group__LISTS_ga192e5880c2b4672ac2e4027ea1a8a9af}{ci\_\-list\_\-tail}(list)~(list \&\& list-\/$>$last != NULL ? list-\/$>$last-\/$>$item : NULL)}
+\label{group__LISTS_ga192e5880c2b4672ac2e4027ea1a8a9af}
+
+\begin{DoxyCompactList}\small\item\em Return last item of the list. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct ci\_\-list \hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t}
+\begin{DoxyCompactList}\small\item\em The ci\_\-list\_\-t objects can store a list of objects, with a predefined size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$ \hyperlink{group__LISTS_gaad0298a6a8b8b941153be59c99953581}{ci\_\-list\_\-create} (size\_\-t init\_\-size, size\_\-t obj\_\-size)
+\begin{DoxyCompactList}\small\item\em Allocate the required memory and initialize a ci\_\-list\_\-t object. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__LISTS_gaa6f56c0149c919fa0c324c8dbff28d86}{ci\_\-list\_\-destroy} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Destroy an ci\_\-list\_\-t object. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__LISTS_ga41e1711d5e7f24c8f1df51173293f668}{ci\_\-list\_\-iterate} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, void $\ast$data, int($\ast$fn)(void $\ast$data, const void $\ast$obj))
+\begin{DoxyCompactList}\small\item\em Run the given function for each list item. \item\end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__LISTS_ga3831f98e89e66269a1285a3db4e7f828}{ci\_\-list\_\-push} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, const void $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Add an item to the head of list. \item\end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__LISTS_gaa0dae6fec0c83e67b1630bb7c6cea78c}{ci\_\-list\_\-push\_\-back} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Add an item to the tail of list. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__LISTS_gaa508f38d5d4ac019dbc7acbb6ad58e5a}{ci\_\-list\_\-pop} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, void $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Remove the first item of the list. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__LISTS_ga522334a836ba93ab88cc9df691a59d4c}{ci\_\-list\_\-pop\_\-back} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, void $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Remove the last item of the list. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__LISTS_ga9cfabc4ce1570206306c99e62e96c5f7}{ci\_\-list\_\-remove} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, const void $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Remove the first found item equal to the obj. \item\end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__LISTS_ga285029e6cfd7bc7c36601f40b8617e75}{ci\_\-list\_\-search} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Return the first found item equal to the obj. \item\end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__LISTS_ga80c99d3e99b256414bb53b14108168a0}{ci\_\-list\_\-search2} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, const void $\ast$data, int($\ast$cmp\_\-func)(const void $\ast$obj, const void $\ast$user\_\-data, size\_\-t user\_\-data\_\-size))
+\begin{DoxyCompactList}\small\item\em Return the first found item equal to the obj, using the cmp\_\-func as comparison function. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__LISTS_ga5253cbf795ff0b07b8ad8aad68c6880e}{ci\_\-list\_\-sort} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Sorts the list using as compare function the default. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__LISTS_ga39a78437be7f9f78d6d93f69d7fe76d4}{ci\_\-list\_\-sort2} (\hyperlink{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{ci\_\-list\_\-t} $\ast$list, int($\ast$cmp\_\-func)(const void $\ast$obj1, const void $\ast$obj2, size\_\-t obj\_\-size))
+\begin{DoxyCompactList}\small\item\em Sorts the list using as compare function the cmp\_\-func. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Lists for storing items, and can grow unlimited. 
+
+\subsection{Define Documentation}
+\hypertarget{group__LISTS_ga77f44d5b3bada068ec700d4b281c3a1f}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-first@{ci\_\-list\_\-first}}
+\index{ci\_\-list\_\-first@{ci\_\-list\_\-first}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-list\_\-first(list)~(list \&\& (list)-\/$>$items \&\& (((list)-\/$>$cursor = (list)-\/$>$items-\/$>$next) != NULL $|$$|$ 1) ? (list)-\/$>$items-\/$>$item : NULL)}}
+\label{group__LISTS_ga77f44d5b3bada068ec700d4b281c3a1f}
+
+
+Gets the first item of the list and updates the list cursor to the next item. WARNING: do not mix this macro with ci\_\-list\_\-iterate. Use the ci\_\-list\_\-head/ci\_\-list\_\-tail macros instead
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first item if exist, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_gaeb3e08e79c3a29024821a46bb76d9870}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-next@{ci\_\-list\_\-next}}
+\index{ci\_\-list\_\-next@{ci\_\-list\_\-next}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-next}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-list\_\-next(list)~(((list)-\/$>$tmp = (list)-\/$>$cursor) != NULL \&\& (((list)-\/$>$cursor = (list)-\/$>$cursor-\/$>$next) != NULL $|$$|$ 1) ? (list)-\/$>$tmp-\/$>$item : NULL)}}
+\label{group__LISTS_gaeb3e08e79c3a29024821a46bb76d9870}
+
+
+Return the next item of the list and updates the list cursor to the next item. WARNING: It does not check for valid list object. WARNING: do not mix this macro with ci\_\-list\_\-iterate!
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The next item if exist, NULL otherwise 
+\end{DoxyReturn}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-t@{ci\_\-list\_\-t}}
+\index{ci\_\-list\_\-t@{ci\_\-list\_\-t}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-list\_\-t}}}
+\label{group__LISTS_ga785498c08d3d0440e1403146d0dfdb57}
+
+
+The ci\_\-list\_\-t objects can store a list of objects, with a predefined size. The list items can be removed. The memory RAM space of list can not be decreased before the ci\_\-list destroyed. However the memory of removed items reused. 
+
+\subsection{Function Documentation}
+\hypertarget{group__LISTS_gaad0298a6a8b8b941153be59c99953581}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-create@{ci\_\-list\_\-create}}
+\index{ci\_\-list\_\-create@{ci\_\-list\_\-create}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-list\_\-t}$\ast$ ci\_\-list\_\-create (size\_\-t {\em init\_\-size}, \/  size\_\-t {\em obj\_\-size})}}
+\label{group__LISTS_gaad0298a6a8b8b941153be59c99953581}
+
+
+Allocate the required memory and initialize a ci\_\-list\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em init\_\-size}]the initial memory size to use \item[{\em obj\_\-size}]the size of stored objects. If it is 0 then stores pointers to objects. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the allocated object on success, or NULL on failure 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_gaa6f56c0149c919fa0c324c8dbff28d86}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-destroy@{ci\_\-list\_\-destroy}}
+\index{ci\_\-list\_\-destroy@{ci\_\-list\_\-destroy}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-list\_\-destroy ({\bf ci\_\-list\_\-t} $\ast$ {\em list})}}
+\label{group__LISTS_gaa6f56c0149c919fa0c324c8dbff28d86}
+
+
+Destroy an ci\_\-list\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to ci\_\-list\_\-t object to be destroyed \end{DoxyParams}
+\hypertarget{group__LISTS_ga41e1711d5e7f24c8f1df51173293f668}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-iterate@{ci\_\-list\_\-iterate}}
+\index{ci\_\-list\_\-iterate@{ci\_\-list\_\-iterate}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-iterate}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-list\_\-iterate ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  void $\ast$ {\em data}, \/  int($\ast$)(void $\ast$data, const void $\ast$obj) {\em fn})}}
+\label{group__LISTS_ga41e1711d5e7f24c8f1df51173293f668}
+
+
+Run the given function for each list item. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em data}]a pointer to data which will be passed to the fn function \item[{\em fn}]a pointer to the function which will be run for each vector item. The iteration will stop if the fn function return non zero value. \end{DoxyParams}
+\hypertarget{group__LISTS_gaa508f38d5d4ac019dbc7acbb6ad58e5a}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-pop@{ci\_\-list\_\-pop}}
+\index{ci\_\-list\_\-pop@{ci\_\-list\_\-pop}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-pop}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ ci\_\-list\_\-pop ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  void $\ast$ {\em obj})}}
+\label{group__LISTS_gaa508f38d5d4ac019dbc7acbb6ad58e5a}
+
+
+Remove the first item of the list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to an object to store removed item \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the obj on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_ga522334a836ba93ab88cc9df691a59d4c}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-pop\_\-back@{ci\_\-list\_\-pop\_\-back}}
+\index{ci\_\-list\_\-pop\_\-back@{ci\_\-list\_\-pop\_\-back}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-pop\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ ci\_\-list\_\-pop\_\-back ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  void $\ast$ {\em obj})}}
+\label{group__LISTS_ga522334a836ba93ab88cc9df691a59d4c}
+
+
+Remove the last item of the list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to an object to store removed item \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the obj on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_ga3831f98e89e66269a1285a3db4e7f828}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-push@{ci\_\-list\_\-push}}
+\index{ci\_\-list\_\-push@{ci\_\-list\_\-push}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-push}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ ci\_\-list\_\-push ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  const void $\ast$ {\em obj})}}
+\label{group__LISTS_ga3831f98e89e66269a1285a3db4e7f828}
+
+
+Add an item to the head of list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to the object to add in vector \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the new item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_gaa0dae6fec0c83e67b1630bb7c6cea78c}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-push\_\-back@{ci\_\-list\_\-push\_\-back}}
+\index{ci\_\-list\_\-push\_\-back@{ci\_\-list\_\-push\_\-back}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-push\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ ci\_\-list\_\-push\_\-back ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  const void $\ast$ {\em data})}}
+\label{group__LISTS_gaa0dae6fec0c83e67b1630bb7c6cea78c}
+
+
+Add an item to the tail of list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to the object to add in vector \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the new item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_ga9cfabc4ce1570206306c99e62e96c5f7}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-remove@{ci\_\-list\_\-remove}}
+\index{ci\_\-list\_\-remove@{ci\_\-list\_\-remove}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-list\_\-remove ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  const void $\ast$ {\em obj})}}
+\label{group__LISTS_ga9cfabc4ce1570206306c99e62e96c5f7}
+
+
+Remove the first found item equal to the obj. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to an object to remove \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+not 0 on success, 0 otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_ga285029e6cfd7bc7c36601f40b8617e75}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-search@{ci\_\-list\_\-search}}
+\index{ci\_\-list\_\-search@{ci\_\-list\_\-search}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-search}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ ci\_\-list\_\-search ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  const void $\ast$ {\em data})}}
+\label{group__LISTS_ga285029e6cfd7bc7c36601f40b8617e75}
+
+
+Return the first found item equal to the obj. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to an object to remove \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the found item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_ga80c99d3e99b256414bb53b14108168a0}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-search2@{ci\_\-list\_\-search2}}
+\index{ci\_\-list\_\-search2@{ci\_\-list\_\-search2}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-search2}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ ci\_\-list\_\-search2 ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  const void $\ast$ {\em data}, \/  int($\ast$)(const void $\ast$obj, const void $\ast$user\_\-data, size\_\-t user\_\-data\_\-size) {\em cmp\_\-func})}}
+\label{group__LISTS_ga80c99d3e99b256414bb53b14108168a0}
+
+
+Return the first found item equal to the obj, using the cmp\_\-func as comparison function. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em obj}]pointer to an object to remove \item[{\em cmp\_\-func}]the comparison function to use \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the found item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__LISTS_ga5253cbf795ff0b07b8ad8aad68c6880e}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-sort@{ci\_\-list\_\-sort}}
+\index{ci\_\-list\_\-sort@{ci\_\-list\_\-sort}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-sort}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-list\_\-sort ({\bf ci\_\-list\_\-t} $\ast$ {\em list})}}
+\label{group__LISTS_ga5253cbf795ff0b07b8ad8aad68c6880e}
+
+
+Sorts the list using as compare function the default. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \end{DoxyParams}
+\hypertarget{group__LISTS_ga39a78437be7f9f78d6d93f69d7fe76d4}{
+\index{LISTS@{LISTS}!ci\_\-list\_\-sort2@{ci\_\-list\_\-sort2}}
+\index{ci\_\-list\_\-sort2@{ci\_\-list\_\-sort2}!LISTS@{LISTS}}
+\subsubsection[{ci\_\-list\_\-sort2}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-list\_\-sort2 ({\bf ci\_\-list\_\-t} $\ast$ {\em list}, \/  int($\ast$)(const void $\ast$obj1, const void $\ast$obj2, size\_\-t obj\_\-size) {\em cmp\_\-func})}}
+\label{group__LISTS_ga39a78437be7f9f78d6d93f69d7fe76d4}
+
+
+Sorts the list using as compare function the cmp\_\-func. 
+\begin{DoxyParams}{Parameters}
+\item[{\em list}]a pointer to the ci\_\-list\_\-t object \item[{\em cmp\_\-func}]the compare function to use \end{DoxyParams}

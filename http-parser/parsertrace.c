@@ -1,29 +1,3 @@
-/* Based on src/http/ngx_http_parse.c from NGINX copyright Igor Sysoev
- *
- * Additional changes are licensed under the same terms as NGINX and
- * copyright Joyent, Inc. and other Node contributors. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to
- * deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- * sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
- */
-
-/* Dump what the parser finds to stdout as it happen */
-
 #include "http_parser.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -131,11 +105,14 @@ int main(int argc, char* argv[]) {
 
   http_parser_settings settings;
   memset(&settings, 0, sizeof(settings));
+#if 0
   settings.on_message_begin = on_message_begin;
   settings.on_url = on_url;
   settings.on_header_field = on_header_field;
   settings.on_header_value = on_header_value;
   settings.on_headers_complete = on_headers_complete;
+#endif
+
   settings.on_body = on_body;
   settings.on_message_complete = on_message_complete;
 

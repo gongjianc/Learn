@@ -25,68 +25,88 @@
 #include "simple_api.h"
 #include "debug.h"
 
+#define MAX_URL_SIZE  8192
+#define MAX_METHOD_SIZE  16
+#define SMALL_BUFF 1024
+#define NON_NUM '0'
+
+struct http_info {
+    char method[MAX_METHOD_SIZE];
+    char url[MAX_URL_SIZE];
+};
+
+struct echo_req_data;
+
 int echo_init_service(ci_service_xdata_t * srv_xdata,
-                      struct ci_server_conf *server_conf);
+        struct ci_server_conf *server_conf);
 int echo_check_preview_handler(char *preview_data, int preview_data_len,
-                               ci_request_t *);
+        ci_request_t *);
 int echo_end_of_data_handler(ci_request_t * req);
 void *echo_init_request_data(ci_request_t * req);
 void echo_close_service();
 void echo_release_request_data(void *data);
-int echo_io(char *wbuf, int *wlen, char *rbuf, int *rlen, int iseof,
-            ci_request_t * req);
+int echo_io(char *wbuf, int *wlen, char *rbuf, int *rlen, int iseof,ci_request_t * req);
+void generate_redirect_page(char *, ci_request_t *, struct echo_req_data *);
+int extract_http_info(ci_request_t *, ci_headers_list_t *, struct http_info *);
+char *http_content_type(ci_request_t *);
 
-//CI_DECLARE_MOD_DATA æ˜¯å®æ›¿æ¢ï¼Œ
-//è¡¨ç¤º __attribute__ ((visibility("default"))) 
-//å…·ä½“è¿™ä¸ªæ˜¯ä»€ä¹ˆæ„æ€ï¼Ÿ
+int hex2num(char);
+int web_URLDecode(const char *, const int, char *, const int);
+
+
 CI_DECLARE_MOD_DATA ci_service_module_t service = {
-     "echo",                         /* mod_name, The module name */
-     "Echo demo service",            /* mod_short_descr,  Module short description */
-     ICAP_RESPMOD | ICAP_REQMOD,     /* mod_type, The service type is responce or request modification */
-     echo_init_service,              /* mod_init_service. Service initialization */
-     NULL,                           /* post_init_service. Service initialization after c-icap 
-					configured. Not used here */
-     echo_close_service,           /* mod_close_service. Called when service shutdowns. */
-     echo_init_request_data,         /* mod_init_request_data */
-     echo_release_request_data,      /* mod_release_request_data */
-     echo_check_preview_handler,     /* mod_check_preview_handler */
-     echo_end_of_data_handler,       /* mod_end_of_data_handler */
-     echo_io,                        /* mod_service_io */
-     NULL,
-     NULL
+    "echo",                         /* mod_name, The module name */
+    "Echo demo service",            /* mod_short_descr,  Module short description */
+    ICAP_RESPMOD | ICAP_REQMOD,     /* mod_type, The service type is responce or request modification */
+    echo_init_service,              /* mod_init_service. Service initialization */
+    NULL,                           /* post_init_service. Service initialization after c-icap 
+                                       configured. Not used here */
+    echo_close_service,           /* mod_close_service. Called when service shutdowns. */
+    echo_init_request_data,         /* mod_init_request_data */
+    echo_release_request_data,      /* mod_release_request_data */
+    echo_check_preview_handler,     /* mod_check_preview_handler */
+    echo_end_of_data_handler,       /* mod_end_of_data_handler */
+    echo_io,                        /* mod_service_io */
+    NULL,
+    NULL
 };
 
 /*
-  The echo_req_data structure will store the data required to serve an ICAP request.
-*/
+   The echo_req_data structure will store the data required to serve an ICAP request.
+   */
 struct echo_req_data {
     /*the body data*/
-    ci_ring_buf_t *body;
+    //ci_ring_buf_t *body;
     /*flag for marking the eof*/
     int eof;
+    ci_membuf_t *error_page;
+    ci_simple_file_t *body;
+    ci_request_t *req;
+    int blocked;
+    //int rediected;
 };
 
 
 /* This function will be called when the service loaded  */
 int echo_init_service(ci_service_xdata_t * srv_xdata,
-                      struct ci_server_conf *server_conf)
+        struct ci_server_conf *server_conf)
 {
-     ci_debug_printf(5, "Initialization of echo module......\n");
-     
-     /*Tell to the icap clients that we can support up to 1024 size of preview data*/
-     ci_service_set_preview(srv_xdata, 1024);
+    ci_debug_printf(5, "Initialization of echo module......\n");
 
-     /*Tell to the icap clients that we support 204 responses*/
-     ci_service_enable_204(srv_xdata);
+    /*Tell to the icap clients that we can support up to 1024 size of preview data*/
+    ci_service_set_preview(srv_xdata, 1024);
 
-     /*Tell to the icap clients to send preview data for all files*/
-     ci_service_set_transfer_preview(srv_xdata, "*");
+    /*Tell to the icap clients that we support 204 responses*/
+    ci_service_enable_204(srv_xdata);
 
-     /*Tell to the icap clients that we want the X-Authenticated-User and X-Authenticated-Groups headers
-       which contains the username and the groups in which belongs.  */
-     ci_service_set_xopts(srv_xdata,  CI_XAUTHENTICATEDUSER|CI_XAUTHENTICATEDGROUPS);
-     
-     return CI_OK;
+    /*Tell to the icap clients to send preview data for all files*/
+    ci_service_set_transfer_preview(srv_xdata, "*");
+
+    /*Tell to the icap clients that we want the X-Authenticated-User and X-Authenticated-Groups headers
+      which contains the username and the groups in which belongs.  */
+    ci_service_set_xopts(srv_xdata,  CI_XAUTHENTICATEDUSER|CI_XAUTHENTICATEDGROUPS);
+
+    return CI_OK;
 }
 
 /* This function will be called when the service shutdown */
@@ -98,11 +118,15 @@ void echo_close_service()
 
 /*This function will be executed when a new request for echo service arrives. This function will
   initialize the required structures and data to serve the request.
- */
+  */
 void *echo_init_request_data(ci_request_t * req)
 {
+
     struct echo_req_data *echo_data;
 
+    ci_debug_printf(5, "\033[0;32m  echo_init_request_data ......\n");
+    ci_debug_printf(5, "############################################\n");
+    ci_debug_printf(5, "\033[0m\n");
     /*Allocate memory fot the echo_data*/
     echo_data = malloc(sizeof(struct echo_req_data));
     if (!echo_data) {
@@ -112,128 +136,562 @@ void *echo_init_request_data(ci_request_t * req)
 
     /*If the ICAP request encuspulates a HTTP objects which contains body data 
       and not only headers allocate a ci_cached_file_t object to store the body data.
-     */
-     if (ci_req_hasbody(req))
-          echo_data->body = ci_ring_buf_new(4096);
-     else
-	       echo_data->body = NULL;
-
-     echo_data->eof = 0;
-     /*Return to the c-icap server the allocated data*/
-     return echo_data;
+      */
+    //if (ci_req_hasbody(req))
+    //     echo_data->body = ci_ring_buf_new(4096);
+    //else
+    echo_data->body = NULL;
+    echo_data->error_page = NULL;
+    echo_data->req = req;
+    echo_data->blocked = 0;
+    //echo_data->redirected = 0;
+    return echo_data;
 }
 
 /*This function will be executed after the request served to release allocated data*/
 void echo_release_request_data(void *data)
 {
+
+    ci_debug_printf(5, "\033[0;31m \n");//´òÓ¡Êä³ö´øÑÕÉ«£¬31ÊÇºìÉ«
+    ci_debug_printf(5, "_______echo_release_request_data____________ \r\n");
+    ci_debug_printf(5, "\033[0m\n");//½áÊø×ÖÌåÏÔÊ¾
+
     /*The data points to the echo_req_data struct we allocated in function echo_init_service */
     struct echo_req_data *echo_data = (struct echo_req_data *)data;
-    
-    /*if we had body data, release the related allocated data*/
-    if(echo_data->body)
-	ci_ring_buf_destroy(echo_data->body);
 
+    /*if we had body data, release the related allocated data*/
+    //if(echo_data->body)
+    //ci_ring_buf_destroy(echo_data->body);
+
+    if (echo_data->body) {
+        ci_simple_file_destroy(echo_data->body);
+    }
+    if (echo_data->error_page){
+        ci_membuf_free(echo_data->error_page);
+    }
     free(echo_data);
 }
 
+int ishttpsource(char *url)
+{
+    char *p = url;
+    int i=0;
+    int length = strlen(url);
+    while(i < MAX_URL_SIZE){
+        if(i>=length)
+        {
+            return 1;
+        }
+        if(strncasecmp(p,".gif",4)==0 || strncasecmp(p,".gif?",5)==0 || strncasecmp(p,".css",4)==0 || strncasecmp(p,".css?",5)==0 || strncasecmp(p,".js?",4)==0 || strncasecmp(p,".js",3)==0 || strncasecmp(p,".jpg",4)==0 || strncasecmp(p,".jpg?",5)==0 || strncasecmp(p,".bmp",4)==0 || strncasecmp(p,".bmp?",5)==0 || strncasecmp(p,".png",4)==0 || strncasecmp(p,".png?",5)==0 || strncasecmp(p,".swf",4)==0 || strncasecmp(p,".swf?",5)==0 || strncasecmp(p,".cab",4)==0 || strncasecmp(p,".cab?",5)==0)
+        {
+            return 0;
+        }
+        i++;
+        p++;
+    }
+    return i;
+}
 
 static int whattodo = 0;
 int echo_check_preview_handler(char *preview_data, int preview_data_len,
-                               ci_request_t * req)
+        ci_request_t * req)
 {
-     ci_off_t content_len;
-     
-     /*Get the echo_req_data we allocated using the  echo_init_service  function*/
-     struct echo_req_data *echo_data = ci_service_data(req);
+    ci_debug_printf(5, "\033[0;34m  check_preview_handler ......\n");
+    ci_debug_printf(5, "\033[0m\n");
+    ci_headers_list_t *req_header;
+    char *clientip;
+    struct http_info httpinf;
 
-     /*If there are is a Content-Length header in encupsulated Http object read it
-      and display a debug message (used here only for debuging purposes)*/
-     content_len = ci_http_content_length(req);
-     ci_debug_printf(9, "We expect to read :%" PRINTF_OFF_T " body data\n",
-                     (CAST_OFF_T) content_len);
+    ci_off_t content_len = 0;
 
-     /*If there are not body data in HTTP encapsulated object but only headers
-       respond with Allow204 (no modification required) and terminate here the
-       ICAP transaction */
-     if(!ci_req_hasbody(req))
-	 return CI_MOD_ALLOW204;
+    content_len = ci_http_content_length(req);
+    ci_debug_printf(5, "\033[0;34m  ############################################# ......\n");
+    ci_debug_printf(9, "We expect to read :%" PRINTF_OFF_T " body data\n",(CAST_OFF_T) content_len);
+    ci_debug_printf(5, "\033[0m\n");
 
-     /*Unlock the request body data so the c-icap server can send data before 
-       all body data has received */
-     ci_req_unlock_data(req);
+    /*Get the echo_req_data we allocated using the  echo_init_service  function*/
+    struct echo_req_data *echo_data = ci_service_data(req); //req->service_data
 
-     /*If there are not preview data tell to the client to continue sending data 
-       (http object modification required). */
-     if (!preview_data_len)
-          return CI_MOD_CONTINUE;
+    /* Extract the HTTP header from the request */
+    if ((req_header = ci_http_request_headers(req)) == NULL) {
+        ci_debug_printf(0, "ERROR echo_check_preview_handler: bad http header, aborting.\n");
+        return CI_ERROR;
+    }
+    if ((clientip = ci_headers_value(req->request_header, "X-Client-IP")) != NULL) {
+        ci_debug_printf(2, "DEBUG echo_check_preview_handler: X-Client-IP: %s\n", clientip);
+    }
+    if (!extract_http_info(req, req_header, &httpinf)) {
+        /* Something wrong in the header or unknow method */
+        ci_debug_printf(1, "DEBUG echo_check_preview_handler: bad http header, aborting.\n");
+        return CI_MOD_ALLOW204;
+    }
+    ci_debug_printf(2, "DEBUG echo_check_preview_handler: httpinf.url: %s\n", httpinf.url);
 
-     /* In most real world services we should decide here if we must modify/process
-	or not the encupsulated HTTP object and return CI_MOD_CONTINUE or  
-	CI_MOD_ALLOW204 respectively. The decision can be taken examining the http
-	object headers or/and the preview_data buffer.
 
-	In this example service we just use the whattodo static variable to decide
-	if we want to process or not the HTTP object.
-      */
-     if (whattodo == 0) {
-          whattodo = 1;
-          ci_debug_printf(8, "Echo service will process the request\n");
+    if(!ci_req_hasbody(req))
+        return CI_MOD_ALLOW204;
+    if (!preview_data_len)
+        return CI_MOD_CONTINUE;
 
-	  /*if we have preview data and we want to proceed with the request processing
-	    we should store the preview data. There are cases where all the body
-	    data of the encapsulated HTTP object included in preview data. Someone can use
-	    the ci_req_hasalldata macro to  identify these cases*/
-          if (preview_data_len) {
-	      ci_ring_buf_write(echo_data->body, preview_data, preview_data_len);
-	      echo_data->eof = ci_req_hasalldata(req);
-	  }
-          return CI_MOD_CONTINUE;
-     }
-     else {
-          whattodo = 0;
-	  /*Nothing to do just return an allow204 (No modification) to terminate here
-	   the ICAP transaction */
-          ci_debug_printf(8, "Allow 204...\n");
-          return CI_MOD_ALLOW204;
-     }
+    int content_size = ci_http_content_length(req);
+    //if (strncasecmp(httpinf.method,"GET",3) == 0  && ishttpsource(httpinf.url)!=0){
+    //if (strncasecmp(httpinf.method,"POST",4) == 0  && strncasecmp(httpinf.url,"http://11.11.11.11",18== 0)){
+
+    //Ö»¶ÔPOST±¨ÎÄÐ´ÈëÎÄ¼þ
+    if (strncasecmp(httpinf.method, "POST", 4) == 0 ){
+        ci_debug_printf(5, "\033[0;34m \n");
+        ci_debug_printf(5, "========================POST===================== \r\n");
+        ci_debug_printf(5, "\033[0m\n");
+        //whattodo = 1;
+        //blocked? ???
+        echo_data->blocked = 0;
+        echo_data->body = ci_simple_file_new(content_size);
+        //echo_data->body = ci_simple_file_new(0);
+        ci_debug_printf(2,"_____________preview_data_len=%d__________\r\n",preview_data_len);
+        if (!echo_data->body){
+            ci_debug_printf(2, "________echo_data->body is null");
+            return CI_ERROR;
+        }
+        if (preview_data_len) {
+            char *temp = NULL;
+            temp = (char *)malloc(preview_data_len);
+            memcpy(temp, preview_data, preview_data_len);
+            FILE *fp;
+
+            if ((fp=fopen("/home/jaygong/test/haha.txt","a+"))==NULL) //´ò¿ªÖ»Ð´µÄÎÄ±¾ÎÄ¼þ
+            {
+                printf("cannot open file!\n");
+                exit(0);
+            }
+            fputs(temp,fp); //Ð´Èë´®
+            fclose(fp); //¹ØÎÄ¼þ
+            free(temp);
+            ci_debug_printf(2,"________________________");
+            int i=0;
+            
+            //ÕâÀï×öÁËlock£¬
+            ci_req_lock_data(req);
+            ci_simple_file_lock_all(echo_data->body);
+
+            if (ci_simple_file_write(echo_data->body, preview_data, preview_data_len, ci_req_hasalldata(req)) == CI_ERROR){
+                ci_debug_printf(2, "________ci_simple_file_write CI_ERROR");
+                return CI_ERROR;
+            }
+        }
+        ci_debug_printf(2,"_______CI_MOD_CONTINUE________________\n");
+        return CI_MOD_CONTINUE;
+    }
+    ci_debug_printf(5, "_____________CI_MOD_ALLOW204__________________________ \r\n");
+    return CI_MOD_ALLOW204;
 }
 
 /* This function will called if we returned CI_MOD_CONTINUE in  echo_check_preview_handler
- function, after we read all the data from the ICAP client*/
+   function, after we read all the data from the ICAP client*/
 int echo_end_of_data_handler(ci_request_t * req)
 {
+    ci_debug_printf(5, "\033[0;31m\n");
+    ci_debug_printf(5, "#################________echo_end_of_data_handler START_____________############## \r\n");
+    ci_debug_printf(5, "\033[0m.\n");
     struct echo_req_data *echo_data = ci_service_data(req);
+
+    int bytes = 0;
+
+    //ci_req_unlock_data(req);
+
+    ci_req_unlock_data(req);
+    ci_simple_file_unlock_all(echo_data->body);
+
     /*mark the eof*/
     echo_data->eof = 1;
-    /*and return CI_MOD_DONE */
-     return CI_MOD_DONE;
+    ci_off_t content_len = 0;
+    content_len = ci_http_content_length(req);
+    ci_debug_printf(5, "\033[0;36m\n");
+    ci_debug_printf(5, "end of data handler : content_len is : %d \r\n", content_len);
+    ci_debug_printf(5, "\033[0m.\n");
+
+    char *buf = NULL;
+    buf = (char *)malloc(content_len);
+#if 1
+    if (echo_data->body){
+        ci_debug_printf(9, "____________________________Body data size=%" PRINTF_OFF_T "\n ",
+                (CAST_OFF_T) echo_data->body->bytes_in);
+        bytes = ci_simple_file_read(echo_data->body, buf, content_len);
+        //char *temp = NULL;
+        //temp = (char *)malloc(*rlen);
+        // memcpy(temp,rbuf,*rlen);
+        if(bytes != content_len){
+            ci_debug_printf(9, "ci_simple_file_read error!\n");
+            return CI_ERROR;
+        }
+        
+        char *temp = NULL;
+        temp = (char *)malloc(content_len);
+        if((web_URLDecode(buf, bytes, temp, bytes)) <= 0){
+                ci_debug_printf(9, "URLDECODE error\n");
+        }
+
+        FILE *fp;
+        if ((fp=fopen("/home/jaygong/test/test.txt","a+"))==NULL) //´ò¿ªÖ»Ð´µÄÎÄ±¾ÎÄ¼þ
+        {
+            printf("cannot open file!");
+            exit(0);
+        }
+#if 0
+        int i=0;
+        for(i=0;i < strlen(temp); i++){
+            if((temp[i] >= 0x31 && temp[i] <0x40)
+                    || ( temp[i] >= 0x41 && temp[i] <0x5a)
+                    || ( temp[i] >= 0x61 && temp[i] <0x7a)){
+                fputc(*(temp+i),fp); //Ð´Èë´®
+            }
+            else{
+                fputc('.',fp);
+            }
+        }
+#endif
+        fputs(temp, fp);
+        ci_debug_printf(5, "\033[0;36m ============ FINISH ============== \n \033[0m ");
+        //sleep(5);
+        echo_data->blocked = 1;
+
+        fclose(fp); //¹ØÎÄ¼þ
+        free(temp);
+        free(buf);
+    }
+#endif
+
+    if(content_len > 0){
+        if(ci_http_response_remove_header(req, "Content-Length") != 0)
+        {
+            char c_content_length[32];
+            ci_debug_printf(9, "ci_http_response_remove_header ok \n");
+            memset(c_content_length,0,sizeof(c_content_length));
+            sprintf(c_content_length, "Content-Length: %" PRINTF_OFF_T ,content_len+61);
+            if(ci_http_response_add_header(req, c_content_length)!=NULL)
+            {
+                ci_debug_printf(9, "old Content-Length :%" PRINTF_OFF_T " modify after  Content-Length: %" PRINTF_OFF_T "...\n",(CAST_OFF_T)content_len,(CAST_OFF_T)ci_http_content_length(req));
+            }
+        }
+    }
+    //Õâ¸öÊÇÁÙÊ±°æ±¾£¬ÐÞ¸ÄÁË req->body
+#if 0
+    if (echo_read_from_net("<script type=\"text/javascript\">alert(\"hello world\");</script>", 61, 1, req) == CI_ERROR){
+
+    }
+#endif
+    if(echo_data->blocked == 1){
+        //generate_redirect_page("http://www.z.cn", req, echo_data);
+        //return CI_MOD_DONE;
+        //
+
+        //echo_read_from_net("<script>alert(\"hello world\");</script>", 29, 1, req);
+        return CI_MOD_DONE;
+        //return CI_MOD_ALLOW204;
+    }
+    else
+        return CI_MOD_ALLOW204;
+    //sleep(5);
+    //return CI_MOD_ALLOW204;
+}
+
+int echo_read_from_net(char *buf, int len, int iseof, ci_request_t * req)
+{
+    //½¨Á¢Ò»¸öÖ¸Õë Ö¸ÏòÁËreq->service_body
+    struct echo_req_data *data = ci_service_data(req);
+    //int allow_transfer;
+
+    if (!data){
+        return CI_ERROR;
+    }
+    if (!data->body){
+        return len;
+    }
+    ci_debug_printf(5, "\033[0;34m  <---simple_file_write--->\n \033[0m");
+    return ci_simple_file_write(data->body, buf, len, iseof);
+}
+
+int echo_write_to_net(char *buf, int len, ci_request_t * req)
+{
+    int bytes;
+    struct echo_req_data *data = ci_service_data(req);
+
+    if (!data)
+        return CI_ERROR;
+
+    /* if a virus was found or the page has been blocked, a warning page
+       has already been generated */
+    //if (data->error_page && data->eof == 1 && data->blocked == 1){
+
+    //return ci_membuf_read(data->error_page, buf, len);
+    //}
+    ci_req_unlock_data(req);
+    ci_simple_file_unlock_all(data->body);
+
+    if (data->body){
+        ci_debug_printf(9, "____________________________Body data size=%" PRINTF_OFF_T "\n ",
+                (CAST_OFF_T) data->body->bytes_in);
+
+        bytes = ci_simple_file_read(data->body, buf, len);
+        //char *temp = NULL;
+        //temp = (char *)malloc(*rlen);
+        // memcpy(temp,rbuf,*rlen);
+        FILE *fp;
+        if ((fp=fopen("/home/jaygong/test/test.txt","a"))==NULL) //´ò¿ªÖ»Ð´µÄÎÄ±¾ÎÄ¼þ
+        {
+            printf("cannot open file!");
+            exit(0);
+        }
+        int i=0;
+        for(i=0;i<len; i++){
+            if((buf[i] >= 0x31 && buf[i] <0x40)
+                    || (buf[i] >= 0x41 && buf[i] <0x5a)
+                    || (buf[i] >= 0x61 && buf[i] <0x7a)){
+                fputc(*(buf+i),fp); //Ð´Èë´®
+            }
+            else{
+                fputc('.',fp);
+            }
+        }
+        fclose(fp); //¹ØÎÄ¼þ
+    }
+    else{
+        bytes =0;
+    }
+    return bytes;
 }
 
 /* This function will called if we returned CI_MOD_CONTINUE in  echo_check_preview_handler
    function, when new data arrived from the ICAP client and when the ICAP client is 
    ready to get data.
-*/
+   */
 int echo_io(char *wbuf, int *wlen, char *rbuf, int *rlen, int iseof,
-            ci_request_t * req)
+        ci_request_t * req)
 {
-     int ret;
-     struct echo_req_data *echo_data = ci_service_data(req);
-     ret = CI_OK;
+    struct echo_req_data *data = ci_service_data(req);
+    char *temp = NULL;
+    temp = (char *)malloc(*rlen);
+    memcpy(temp,rbuf,*rlen);
+    FILE *fp;
+    if ((fp=fopen("/home/jaygong/test/haha.txt","a"))==NULL) //´ò¿ªÖ»Ð´µÄÎÄ±¾ÎÄ¼þ
+    {
+        printf("cannot open file!");
+        exit(0);
+    }
+    //int i=0;
+    //for(i=0;i<*rlen; i++){
+    // fputc(*(rbuf+i),fp); //Ð´Èë´®
+    //}
+    fputs(temp,fp); //Ð´Èë´®
+    fclose(fp); //¹ØÎÄ¼þ
+    free(temp);
+    //return CI_MOD_ALLOW204;
+    ci_debug_printf(10, "<========================echo_io START__________________________ \r\n");
+    if(rlen){
+        ci_debug_printf(10, "1>>>>>>>>>>>>>>>>>>>>> rlen =%d .. \r\n",*rlen);
+    }else{
+        ci_debug_printf(10, "1>>>>>>>>>>>>>>>>>>>>> rlen is null .. \r\n");
+    }
+    int ret = CI_OK;
 
-     /*write the data read from icap_client to the echo_data->body*/
-     if(rlen && rbuf) {
-         *rlen = ci_ring_buf_write(echo_data->body, rbuf, *rlen);
-         if (*rlen < 0)
-	    ret = CI_ERROR;
-     }
+    if (rbuf && rlen) {
+        //*rlen = echo_read_from_net(rbuf, *rlen, iseof, req);
+#if 0
+        if(!data)
+            return CI_ERROR;
+        if(!data->body)
+            return *rlen;
+#endif
+        data->blocked = 1;
+        *rlen = ci_simple_file_write(data->body, rbuf, *rlen, iseof);
+        ci_debug_printf(10, "2>>>>>>>>>>>>>>>>>>>>> rlen =%d .. \r\n",*rlen);
+        if (*rlen == CI_ERROR)
+            return CI_ERROR;
+        else if (*rlen < 0)
+            ret = CI_OK;
+    } else if (iseof) {
+        ci_debug_printf(10, "3>>>>>>>>>>>>>>>>>>>>> iseof =%d .. \r\n",iseof);
+        if (echo_read_from_net(NULL,0, iseof, req) == CI_ERROR)
+            //if (echo_read_from_net("<script type=\"text/javascript\">alert(\"hello world\");</script>",61, iseof, req) == CI_ERROR)
+            return CI_ERROR;
+    }
+   
+    ci_debug_printf(10, "4>>>>>>>>>>>>>>>>>>>>>>>>> wlen =%d .. \r\n",*wlen);
 
-     /*read some data from the echo_data->body and put them to the write buffer to be send
-      to the ICAP client*/
-     if (wbuf && wlen) {
-          *wlen = ci_ring_buf_read(echo_data->body, wbuf, *wlen);
-     }
-     if(*wlen==0 && echo_data->eof==1)
-	 *wlen = CI_EOF;
+    if (wbuf && wlen) {
+        *wlen = echo_write_to_net(wbuf, *wlen, req);
+        ci_debug_printf(10, "5>>>>>>>>>>>>>>>>>>>>> wlen =%d .. \r\n",*wlen);
+    }
+    if(*wlen==0 && data->eof==1)
+        *wlen = CI_EOF;
+    return CI_OK;
+}
 
-     return ret;
+static const char *blocked_header_message =
+"<html>\n"
+"<body>\n"
+"<p>\n"
+"You will be redirected in few seconds, if not use this <a href=\"";
+
+static const char *blocked_footer_message =
+"\">direct link</a>.\n"
+"</p>\n"
+"</body>\n"
+"</html>\n";
+
+void generate_redirect_page(char * redirect, ci_request_t * req, struct echo_req_data * data)
+{
+    int new_size = 0;
+    char buf[MAX_URL_SIZE];
+    ci_membuf_t *error_page;
+
+    new_size = strlen(blocked_header_message) + strlen(redirect) + strlen(blocked_footer_message) + 10;
+
+    if ( ci_http_response_headers(req)){
+        printf("======ci_http_response_headers(req) != NULL =========\n");
+        ci_http_response_reset_headers(req);
+    }
+    else{
+        printf("======ci_http_response_headers(req) == NULL =========\n");
+        ci_http_response_create(req, 1, 1);
+    }
+
+    ci_debug_printf(2, "DEBUG generate_redirect_page: creating redirection page\n");
+
+    snprintf(buf, MAX_URL_SIZE, "Location: %s", redirect);
+    /*strcat(buf, ";");*/
+
+    ci_debug_printf(3, "DEBUG generate_redirect_page: %s\n", buf);
+
+    ci_http_response_add_header(req, "HTTP/1.0 301 Moved Permanently");
+    ci_http_response_add_header(req, buf);
+    ci_http_response_add_header(req, "Server: C-ICAP");
+    ci_http_response_add_header(req, "Connection: close");
+    /*ci_http_response_add_header(req, "Content-Type: text/html;");*/
+    ci_http_response_add_header(req, "Content-Type: text/html");
+    ci_http_response_add_header(req, "Content-Language: en");
+    //ci_http_response_add_header(req, "Host: www.g.cn");
+#if 0
+    if (data->blocked == 1) {
+        error_page = ci_membuf_new_sized(new_size);
+        ((struct echo_req_data *) data)->error_page = error_page;
+        ci_membuf_write(error_page, (char *) blocked_header_message, strlen(blocked_header_message), 0);
+        ci_membuf_write(error_page, (char *) redirect, strlen(redirect), 0);
+        ci_membuf_write(error_page, (char *) blocked_footer_message, strlen(blocked_footer_message), 1);
+    }
+#endif
+    ci_debug_printf(3, "DEBUG generate_redirect_page: done\n");
+}
+
+
+
+int extract_http_info(ci_request_t * req, ci_headers_list_t * req_header,
+        struct http_info *httpinf)
+{
+    char *str;
+    int i = 0;
+
+    /* Format of the HTTP header we want to parse:
+       GET http://www.squid-cache.org/Doc/config/icap_service HTTP/1.1
+       */
+    httpinf->url[0]='\0';
+    httpinf->method[0] = '\0';
+
+    str = req_header->headers[0];
+
+    /* if we can't find a space character, there's somethings wrong */
+    if (strchr(str, ' ') == NULL) {
+        return 0;
+    }
+
+    /* extract the HTTP method */
+    while (*str != ' ' && i < MAX_METHOD_SIZE) {
+        httpinf->method[i] = *str;
+        str++;
+        i++;
+    }
+    httpinf->method[i] = '\0';
+    ci_debug_printf(3, "DEBUG extract_http_info: method %s\n", httpinf->method);
+
+    /* Extract the URL part of the header */
+    while (*str == ' ') str++;
+    i = 0;
+    while (*str != ' ' && i < MAX_URL_SIZE) {
+        httpinf->url[i] = *str;
+        i++;
+        str++;
+    }
+    httpinf->url[i] = '\0';
+    ci_debug_printf(3, "DEBUG extract_http_info: url %s\n", httpinf->url);
+    if (*str != ' ') {
+        return 0;
+    }
+    /* we must find the HTTP version after all */
+    while (*str == ' ')
+        str++;
+    if (*str != 'H' || *(str + 4) != '/') {
+        return 0;
+    }
+
+    return 1;
+}
+
+char *http_content_type(ci_request_t * req)
+{
+    ci_headers_list_t *heads;
+    char *val;
+    if (!(heads =  ci_http_response_headers(req))) {
+        /* Then maybe is a reqmod request, try to get request headers */
+        if (!(heads = ci_http_request_headers(req)))
+            return NULL;
+    }
+    if (!(val = ci_headers_value(heads, "Content-Type")))
+        return NULL;
+
+    return val;
+}
+
+int hex2num(char c)
+{
+    if (c>='0' && c<='9') return c - '0';
+    if (c>='a' && c<='z') return c - 'a' + 10;
+    if (c>='A' && c<='Z') return c - 'A' + 10;
+
+    return NON_NUM;
+}
+
+int web_URLDecode(const char* str, const int strSize, char* result, const int resultSize)
+{
+    char ch,ch1,ch2;
+    int i;
+    int j = 0;//record result index
+
+    if ((str==NULL) || (result==NULL) || (strSize<=0) || (resultSize<=0)) {
+        return 0;
+    }
+
+    for ( i=0; (i<strSize) && (j<resultSize); ++i) {
+        ch = str[i];
+        switch (ch) {
+            case '+':
+                result[j++] = ' ';
+                break;
+            case '%':
+                if (i+2 < strSize) {
+                    ch1 = hex2num(str[i+1]);
+                    ch2 = hex2num(str[i+2]);
+                    if ((ch1!=NON_NUM) && (ch2!=NON_NUM))
+                        result[j++] = (char)((ch1<<4) | ch2);
+                    i += 2;
+                    break;
+                } else {
+                    break;
+                }
+            default:
+                result[j++] = ch;
+                break;
+        }
+    }
+
+    result[j] = 0;
+    return j;
 }

@@ -1,0 +1,201 @@
+\hypertarget{group__REQUEST}{
+\section{ICAP request API}
+\label{group__REQUEST}\index{ICAP request API@{ICAP request API}}
+}
+
+
+ICAP request related API.  
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__REQUEST_gaf08ade43e662a7290d87fe0111996bcf}{ci\_\-req\_\-lock\_\-data}(req)~((req)-\/$>$data\_\-locked=1)
+\begin{DoxyCompactList}\small\item\em Lock a ci\_\-request\_\-t object. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{group__REQUEST_ga7d6685cf10deb060690da7f17020634e}{ci\_\-req\_\-unlock\_\-data}(req)~((req)-\/$>$data\_\-locked=0)
+\begin{DoxyCompactList}\small\item\em Unlock a ci\_\-request\_\-t object. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{group__REQUEST_ga880e2efbfecb44754d9eca657a2fc63c}{ci\_\-req\_\-hasbody}(req)~((req)-\/$>$hasbody)
+\item 
+\#define \hyperlink{group__REQUEST_ga513b0e67c47d0a33b9d0e48080c796b2}{ci\_\-req\_\-type}(req)~((req)-\/$>$type)
+\item 
+\#define \hyperlink{group__REQUEST_ga232d8f27e899f6ca044c48808c6de5f0}{ci\_\-req\_\-preview\_\-size}(req)~((req)-\/$>$preview)
+\item 
+\#define \hyperlink{group__REQUEST_gafbf6996e069feff290985ed0c6d9da41}{ci\_\-req\_\-allow204}(req)~((req)-\/$>$allow204)
+\item 
+\#define \hyperlink{group__REQUEST_ga96465be5046df471fc12aead53450577}{ci\_\-req\_\-allow206}(req)~((req)-\/$>$allow206)
+\item 
+\#define \hyperlink{group__REQUEST_ga275b5e800b461574d3da66b22fbd0a29}{ci\_\-req\_\-allow206\_\-outside\_\-preview}(req)~((req)-\/$>$allow206 \&\& (req)-\/$>$allow204)
+\item 
+\#define \hyperlink{group__REQUEST_ga63d1227f02799e998ef8aa4a6066f791}{ci\_\-req\_\-sent\_\-data}(req)~((req)-\/$>$status)
+\item 
+\#define \hyperlink{group__REQUEST_ga0b1cadb60f6d198af3a04cc13442c3cb}{ci\_\-req\_\-hasalldata}(req)~((req)-\/$>$eof\_\-received)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct ci\_\-request \hyperlink{group__REQUEST_ga27da5c4ae491f527ce36901c2e78ea04}{ci\_\-request\_\-t}
+\begin{DoxyCompactList}\small\item\em This is the struct which holds all the data which represent an ICAP request. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \hyperlink{group__REQUEST_ga94393b6b41ccfb7b65c42e2eaff89791}{ci\_\-icap\_\-add\_\-xheader} (\hyperlink{group__REQUEST_ga27da5c4ae491f527ce36901c2e78ea04}{ci\_\-request\_\-t} $\ast$req, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Add an icap X-\/header to the icap response headers. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__REQUEST_gab3bc00aa780fa6899d5046f964a31f39}{ci\_\-icap\_\-append\_\-xheaders} (\hyperlink{group__REQUEST_ga27da5c4ae491f527ce36901c2e78ea04}{ci\_\-request\_\-t} $\ast$req, \hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$headers)
+\begin{DoxyCompactList}\small\item\em Append the icap X-\/headers to the icap response headers. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+ICAP request related API. 
+
+\subsection{Define Documentation}
+\hypertarget{group__REQUEST_gafbf6996e069feff290985ed0c6d9da41}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-allow204@{ci\_\-req\_\-allow204}}
+\index{ci\_\-req\_\-allow204@{ci\_\-req\_\-allow204}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-allow204}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-allow204(req)~((req)-\/$>$allow204)}}
+\label{group__REQUEST_gafbf6996e069feff290985ed0c6d9da41}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True (non zero int) if the ICAP request supports \char`\"{}Allow 204\char`\"{} 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_ga96465be5046df471fc12aead53450577}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-allow206@{ci\_\-req\_\-allow206}}
+\index{ci\_\-req\_\-allow206@{ci\_\-req\_\-allow206}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-allow206}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-allow206(req)~((req)-\/$>$allow206)}}
+\label{group__REQUEST_ga96465be5046df471fc12aead53450577}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True (non zero int) if the ICAP request supports \char`\"{}Allow 206\char`\"{} 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_ga275b5e800b461574d3da66b22fbd0a29}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-allow206\_\-outside\_\-preview@{ci\_\-req\_\-allow206\_\-outside\_\-preview}}
+\index{ci\_\-req\_\-allow206\_\-outside\_\-preview@{ci\_\-req\_\-allow206\_\-outside\_\-preview}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-allow206\_\-outside\_\-preview}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-allow206\_\-outside\_\-preview(req)~((req)-\/$>$allow206 \&\& (req)-\/$>$allow204)}}
+\label{group__REQUEST_ga275b5e800b461574d3da66b22fbd0a29}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True (non zero int) if the ICAP request supports \char`\"{}Allow 206\char`\"{} outside preview requests 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_ga0b1cadb60f6d198af3a04cc13442c3cb}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-hasalldata@{ci\_\-req\_\-hasalldata}}
+\index{ci\_\-req\_\-hasalldata@{ci\_\-req\_\-hasalldata}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-hasalldata}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-hasalldata(req)~((req)-\/$>$eof\_\-received)}}
+\label{group__REQUEST_ga0b1cadb60f6d198af3a04cc13442c3cb}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True (non zero int) if the ICAP client has sent all the data (headers and body data) to the ICAP server 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples: ]\par
+\hyperlink{services_2echo_2srv__echo_8c-example}{services/echo/srv\_\-echo.c}.\end{Desc}
+\hypertarget{group__REQUEST_ga880e2efbfecb44754d9eca657a2fc63c}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-hasbody@{ci\_\-req\_\-hasbody}}
+\index{ci\_\-req\_\-hasbody@{ci\_\-req\_\-hasbody}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-hasbody}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-hasbody(req)~((req)-\/$>$hasbody)}}
+\label{group__REQUEST_ga880e2efbfecb44754d9eca657a2fc63c}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true (non zero int) if the ICAP request contains body data else zero 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples: ]\par
+\hyperlink{services_2echo_2srv__echo_8c-example}{services/echo/srv\_\-echo.c}.\end{Desc}
+\hypertarget{group__REQUEST_gaf08ade43e662a7290d87fe0111996bcf}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-lock\_\-data@{ci\_\-req\_\-lock\_\-data}}
+\index{ci\_\-req\_\-lock\_\-data@{ci\_\-req\_\-lock\_\-data}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-lock\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-lock\_\-data(req)~((req)-\/$>$data\_\-locked=1)}}
+\label{group__REQUEST_gaf08ade43e662a7290d87fe0111996bcf}
+
+
+Lock a ci\_\-request\_\-t object. After called the c-\/icap server stops sending body data to the ICAP client. 
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\hypertarget{group__REQUEST_ga232d8f27e899f6ca044c48808c6de5f0}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-preview\_\-size@{ci\_\-req\_\-preview\_\-size}}
+\index{ci\_\-req\_\-preview\_\-size@{ci\_\-req\_\-preview\_\-size}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-preview\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-preview\_\-size(req)~((req)-\/$>$preview)}}
+\label{group__REQUEST_ga232d8f27e899f6ca044c48808c6de5f0}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ICAP preview size 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_ga63d1227f02799e998ef8aa4a6066f791}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-sent\_\-data@{ci\_\-req\_\-sent\_\-data}}
+\index{ci\_\-req\_\-sent\_\-data@{ci\_\-req\_\-sent\_\-data}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-sent\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-sent\_\-data(req)~((req)-\/$>$status)}}
+\label{group__REQUEST_ga63d1227f02799e998ef8aa4a6066f791}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True (non zero int) if the c-\/icap server has send data to the client 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_ga513b0e67c47d0a33b9d0e48080c796b2}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-type@{ci\_\-req\_\-type}}
+\index{ci\_\-req\_\-type@{ci\_\-req\_\-type}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-type(req)~((req)-\/$>$type)}}
+\label{group__REQUEST_ga513b0e67c47d0a33b9d0e48080c796b2}
+\begin{DoxyReturn}{Returns}
+ICAP\_\-OPTIONS, ICAP\_\-REQMOD or ICAP\_\-RESPMOD if the ICAP request is options, request modification or response modification ICAP request 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_ga7d6685cf10deb060690da7f17020634e}{
+\index{REQUEST@{REQUEST}!ci\_\-req\_\-unlock\_\-data@{ci\_\-req\_\-unlock\_\-data}}
+\index{ci\_\-req\_\-unlock\_\-data@{ci\_\-req\_\-unlock\_\-data}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-req\_\-unlock\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}\#define ci\_\-req\_\-unlock\_\-data(req)~((req)-\/$>$data\_\-locked=0)}}
+\label{group__REQUEST_ga7d6685cf10deb060690da7f17020634e}
+
+
+Unlock a ci\_\-request\_\-t object. When called the c-\/icap server will start sending body data to the ICAP client. 
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is pointer to an object of type ci\_\-request\_\-t \end{DoxyParams}
+\begin{Desc}
+\item[Examples: ]\par
+\hyperlink{services_2echo_2srv__echo_8c-example}{services/echo/srv\_\-echo.c}.\end{Desc}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{group__REQUEST_ga27da5c4ae491f527ce36901c2e78ea04}{
+\index{REQUEST@{REQUEST}!ci\_\-request\_\-t@{ci\_\-request\_\-t}}
+\index{ci\_\-request\_\-t@{ci\_\-request\_\-t}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-request\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-request\_\-t}}}
+\label{group__REQUEST_ga27da5c4ae491f527ce36901c2e78ea04}
+
+
+This is the struct which holds all the data which represent an ICAP request. The developers should not access directly the fields of this struct but better use the documented macros and functions 
+
+\subsection{Function Documentation}
+\hypertarget{group__REQUEST_ga94393b6b41ccfb7b65c42e2eaff89791}{
+\index{REQUEST@{REQUEST}!ci\_\-icap\_\-add\_\-xheader@{ci\_\-icap\_\-add\_\-xheader}}
+\index{ci\_\-icap\_\-add\_\-xheader@{ci\_\-icap\_\-add\_\-xheader}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-icap\_\-add\_\-xheader}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ci\_\-icap\_\-add\_\-xheader ({\bf ci\_\-request\_\-t} $\ast$ {\em req}, \/  const char $\ast$ {\em header})}}
+\label{group__REQUEST_ga94393b6b41ccfb7b65c42e2eaff89791}
+
+
+Add an icap X-\/header to the icap response headers. It can be used with both request and response modification ICAP requests. 
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is a pointer to the current ICAP request object. \item[{\em header}]is the header to add in the form \char`\"{}Header: Value\char`\"{} \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the header in success or NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__REQUEST_gab3bc00aa780fa6899d5046f964a31f39}{
+\index{REQUEST@{REQUEST}!ci\_\-icap\_\-append\_\-xheaders@{ci\_\-icap\_\-append\_\-xheaders}}
+\index{ci\_\-icap\_\-append\_\-xheaders@{ci\_\-icap\_\-append\_\-xheaders}!REQUEST@{REQUEST}}
+\subsubsection[{ci\_\-icap\_\-append\_\-xheaders}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-icap\_\-append\_\-xheaders ({\bf ci\_\-request\_\-t} $\ast$ {\em req}, \/  {\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em headers})}}
+\label{group__REQUEST_gab3bc00aa780fa6899d5046f964a31f39}
+
+
+Append the icap X-\/headers to the icap response headers. It can be used with both request and response modification ICAP requests. 
+\begin{DoxyParams}{Parameters}
+\item[{\em req}]is a pointer to the current ICAP request object. \item[{\em headers}]is a pointer to the headers object to add \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the header in success or NULL otherwise 
+\end{DoxyReturn}

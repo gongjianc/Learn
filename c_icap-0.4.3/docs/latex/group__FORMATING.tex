@@ -1,0 +1,89 @@
+\hypertarget{group__FORMATING}{
+\section{Text formating api}
+\label{group__FORMATING}\index{Text formating api@{Text formating api}}
+}
+
+
+Functions and structures used for text formating.  
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structci__fmt__entry}{ci\_\-fmt\_\-entry}
+\begin{DoxyCompactList}\small\item\em This structure used to implement text formating directives. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__FORMATING_ga8978e54f481917484b64eb9c3d627a69}{ci\_\-format\_\-text} (\hyperlink{group__REQUEST_ga27da5c4ae491f527ce36901c2e78ea04}{ci\_\-request\_\-t} $\ast$req\_\-data, const char $\ast$fmt, char $\ast$buffer, int len, struct \hyperlink{structci__fmt__entry}{ci\_\-fmt\_\-entry} $\ast$user\_\-table)
+\begin{DoxyCompactList}\small\item\em Produces formated text based on template text. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structci__fmt__entry}{ci\_\-fmt\_\-entry} \hyperlink{group__FORMATING_ga11b16bbcb255ccf2325bfdaa7eecb005}{GlobalTable} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Internal formating directives table. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions and structures used for text formating. 
+
+\subsection{Function Documentation}
+\hypertarget{group__FORMATING_ga8978e54f481917484b64eb9c3d627a69}{
+\index{FORMATING@{FORMATING}!ci\_\-format\_\-text@{ci\_\-format\_\-text}}
+\index{ci\_\-format\_\-text@{ci\_\-format\_\-text}!FORMATING@{FORMATING}}
+\subsubsection[{ci\_\-format\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-format\_\-text ({\bf ci\_\-request\_\-t} $\ast$ {\em req\_\-data}, \/  const char $\ast$ {\em fmt}, \/  char $\ast$ {\em buffer}, \/  int {\em len}, \/  struct {\bf ci\_\-fmt\_\-entry} $\ast$ {\em user\_\-table})}}
+\label{group__FORMATING_ga8978e54f481917484b64eb9c3d627a69}
+
+
+Produces formated text based on template text. 
+\begin{DoxyParams}{Parameters}
+\item[{\em req\_\-data}]The current request \item[{\em fmt}]The format string \item[{\em buffer}]The output buffer \item[{\em len}]The length of the output buffer \item[{\em user\_\-table}]An array of user defined directives \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Non zero on success, zero on error
+\end{DoxyReturn}
+This function uses the internal formating directives table. Also the user can define his own table. 
+
+\subsection{Variable Documentation}
+\hypertarget{group__FORMATING_ga11b16bbcb255ccf2325bfdaa7eecb005}{
+\index{FORMATING@{FORMATING}!GlobalTable@{GlobalTable}}
+\index{GlobalTable@{GlobalTable}!FORMATING@{FORMATING}}
+\subsubsection[{GlobalTable}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ci\_\-fmt\_\-entry} {\bf GlobalTable}\mbox{[}$\,$\mbox{]}}}
+\label{group__FORMATING_ga11b16bbcb255ccf2325bfdaa7eecb005}
+
+
+Internal formating directives table. This table define the following directives:\par
+ {\itshape \char`\"{}\%a\char`\"{}\/}: Remote IP-\/Address \par
+ {\itshape \char`\"{}\%la\char`\"{}\/}: Local IP Address \par
+ {\itshape \char`\"{}\%lp\char`\"{}\/}: Local port \par
+ {\itshape \char`\"{}\%$>$a\char`\"{}\/}: Http Client IP Address \par
+ {\itshape \char`\"{}\%$<$A\char`\"{}\/}: Http Server IP Address \par
+ {\itshape \char`\"{}\%ts\char`\"{}\/}: Seconds since epoch \par
+ {\itshape \char`\"{}\%tl\char`\"{}\/}: Local time \par
+ {\itshape \char`\"{}\%tg\char`\"{}\/}: GMT time \par
+ {\itshape \char`\"{}\%$>$ho\char`\"{}\/}: Modified Http request header \par
+ {\itshape \char`\"{}\%huo\char`\"{}\/}: Modified Http request url \par
+ {\itshape \char`\"{}\%$<$ho\char`\"{}\/}: Modified Http reply header \par
+ {\itshape \char`\"{}\%iu\char`\"{}\/}: Icap request url \par
+ {\itshape \char`\"{}\%im\char`\"{}\/}: Icap method \par
+ {\itshape \char`\"{}\%is\char`\"{}\/}: Icap status code \par
+ {\itshape \char`\"{}\%$>$ih\char`\"{}\/}: Icap request header \par
+ {\itshape \char`\"{}\%$<$ih\char`\"{}\/}: Icap response header \par
+ {\itshape \char`\"{}\%ipl\char`\"{}\/}: Icap preview length \par
+ {\itshape \char`\"{}\%Ih\char`\"{}\/}: Http bytes received \par
+ {\itshape \char`\"{}\%Oh\char`\"{}\/}: Http bytes sent \par
+ {\itshape \char`\"{}\%Ib\char`\"{}\/}: Http body bytes received \par
+ {\itshape \char`\"{}\%Ob\char`\"{}\/}: Http body bytes sent \par
+ {\itshape \char`\"{}\%I\char`\"{}\/}: Bytes received \par
+ {\itshape \char`\"{}\%O\char`\"{}\/}: Bytes sent \par
+ {\itshape \char`\"{}\%bph\char`\"{}\/}: Body data preview \par
+ {\itshape \char`\"{}\%un\char`\"{}\/}: Username \par
+ {\itshape \char`\"{}\%Sl\char`\"{}\/}: Log string set by service\par
+ {\itshape \char`\"{}\%Sa\char`\"{}\/}: Attribute value set by service\par
+
+
+Not yet implemented:\par
+ {\itshape \char`\"{}\%tr\char`\"{}\/}: Response time \par
+ {\itshape \char`\"{}\%hu\char`\"{}\/}: Http request url \par
+ {\itshape \char`\"{}\%$>$hi\char`\"{}\/}: Http request header \par
+ {\itshape \char`\"{}\%$<$hi\char`\"{}\/}: Http reply header \par
+ {\itshape \char`\"{}\%Hs\char`\"{}\/}: Http reply status \par
+ {\itshape \char`\"{}\%Hso\char`\"{}\/}: Modified Http reply status \par
+ 

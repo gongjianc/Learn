@@ -1,0 +1,174 @@
+\hypertarget{group__SIMPLE__ARRAYS}{
+\section{Simple arrays related API}
+\label{group__SIMPLE__ARRAYS}\index{Simple arrays related API@{Simple arrays related API}}
+}
+
+
+Arrays which store name/value pair items.  
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__STR__ARRAYS}{Arrays of strings related API}
+
+
+\begin{DoxyCompactList}\small\item\em Arrays which store name/value pair items. \item\end{DoxyCompactList}\item 
+\hyperlink{group__PTR__ARRAYS}{Arrays of pointers}
+
+
+\begin{DoxyCompactList}\small\item\em Arrays of name/pointers to objects pairs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__SIMPLE__ARRAYS_ga45db1c52c0403d416cb8546e3bc36c4f}{
+\#define \hyperlink{group__SIMPLE__ARRAYS_ga45db1c52c0403d416cb8546e3bc36c4f}{ci\_\-array\_\-value}(array, pos)~(pos $<$ (array)-\/$>$count ?  (array)-\/$>$items\mbox{[}pos\mbox{]}.value : NULL)}
+\label{group__SIMPLE__ARRAYS_ga45db1c52c0403d416cb8546e3bc36c4f}
+
+\begin{DoxyCompactList}\small\item\em Return the value of item on position 'pos'. \item\end{DoxyCompactList}\item 
+\hypertarget{group__SIMPLE__ARRAYS_ga63e9668bc717322275f3cf840331a77e}{
+\#define \hyperlink{group__SIMPLE__ARRAYS_ga63e9668bc717322275f3cf840331a77e}{ci\_\-array\_\-name}(array, pos)~(pos $<$ (array)-\/$>$count ?  (array)-\/$>$items\mbox{[}pos\mbox{]}.name : NULL)}
+\label{group__SIMPLE__ARRAYS_ga63e9668bc717322275f3cf840331a77e}
+
+\begin{DoxyCompactList}\small\item\em Return the name of item on position 'pos'. \item\end{DoxyCompactList}\item 
+\hypertarget{group__SIMPLE__ARRAYS_ga2b1e5dc04531d3ead16ac0b01f21bba2}{
+\#define \hyperlink{group__SIMPLE__ARRAYS_ga2b1e5dc04531d3ead16ac0b01f21bba2}{ci\_\-array\_\-size}(array)~((array)-\/$>$count)}
+\label{group__SIMPLE__ARRAYS_ga2b1e5dc04531d3ead16ac0b01f21bba2}
+
+\begin{DoxyCompactList}\small\item\em Return the size of array 'array'. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct ci\_\-array \hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t}
+\begin{DoxyCompactList}\small\item\em The ci\_\-array\_\-t objects can store a list of name/value pairs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$ \hyperlink{group__SIMPLE__ARRAYS_ga2ea1f00c1df7ca10c9a612891d085bef}{ci\_\-array\_\-new} (size\_\-t max\_\-mem\_\-size)
+\begin{DoxyCompactList}\small\item\em Allocate the required memory and initialize an ci\_\-array\_\-t object. \item\end{DoxyCompactList}\item 
+\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$ \hyperlink{group__SIMPLE__ARRAYS_gaeec8ec3aaee4be84d57b1f0e19abcfba}{ci\_\-array\_\-new2} (size\_\-t items, size\_\-t item\_\-size)
+\begin{DoxyCompactList}\small\item\em Create and initialize an ci\_\-array\_\-t object for the given number of items. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__SIMPLE__ARRAYS_ga41a031d46e1c8341d0f442dfe849e29b}{ci\_\-array\_\-destroy} (\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$array)
+\begin{DoxyCompactList}\small\item\em Destroy an ci\_\-array\_\-t object. \item\end{DoxyCompactList}\item 
+const ci\_\-array\_\-item\_\-t $\ast$ \hyperlink{group__SIMPLE__ARRAYS_gae6044b8963155a903f5685c2681c2c57}{ci\_\-array\_\-add} (\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$array, const char $\ast$name, const void $\ast$value, size\_\-t size)
+\begin{DoxyCompactList}\small\item\em Add an name/value pair item to the array. \item\end{DoxyCompactList}\item 
+const ci\_\-array\_\-item\_\-t $\ast$ \hyperlink{group__SIMPLE__ARRAYS_ga87cf1f8199d58d2138f22697f611d76f}{ci\_\-array\_\-pop} (\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$array)
+\begin{DoxyCompactList}\small\item\em Delete the last element of the array. \item\end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__SIMPLE__ARRAYS_gaa6879d90b23e4a1cd17cdebd389b2b6e}{ci\_\-array\_\-search} (\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$array, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Search in an array for an item with the given name. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__SIMPLE__ARRAYS_gacb8aadb5dacd5a6e9c9de728601d5977}{ci\_\-array\_\-iterate} (const \hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$array, void $\ast$data, int($\ast$fn)(void $\ast$data, const char $\ast$name, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em Run the given function for each array item. \item\end{DoxyCompactList}\item 
+const ci\_\-array\_\-item\_\-t $\ast$ \hyperlink{group__SIMPLE__ARRAYS_gabdd79d08b37d9bfd1577ce52ece12a5c}{ci\_\-array\_\-get\_\-item} (\hyperlink{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{ci\_\-array\_\-t} $\ast$array, int pos)
+\begin{DoxyCompactList}\small\item\em Get an item of the array. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Arrays which store name/value pair items. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-t@{ci\_\-array\_\-t}}
+\index{ci\_\-array\_\-t@{ci\_\-array\_\-t}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-array\_\-t}}}
+\label{group__SIMPLE__ARRAYS_ga1bec5de79ca98bb53c039a8f8e959137}
+
+
+The ci\_\-array\_\-t objects can store a list of name/value pairs. Currently can grow up to a fixed size. 
+
+\subsection{Function Documentation}
+\hypertarget{group__SIMPLE__ARRAYS_gae6044b8963155a903f5685c2681c2c57}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-add@{ci\_\-array\_\-add}}
+\index{ci\_\-array\_\-add@{ci\_\-array\_\-add}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}const ci\_\-array\_\-item\_\-t$\ast$ ci\_\-array\_\-add ({\bf ci\_\-array\_\-t} $\ast$ {\em array}, \/  const char $\ast$ {\em name}, \/  const void $\ast$ {\em value}, \/  size\_\-t {\em size})}}
+\label{group__SIMPLE__ARRAYS_gae6044b8963155a903f5685c2681c2c57}
+
+
+Add an name/value pair item to the array. 
+\begin{DoxyParams}{Parameters}
+\item[{\em array}]a pointer to the ci\_\-array\_\-t object \item[{\em name}]the name part of the name/value pair item to add \item[{\em value}]the value part of the name/value pair item to add \item[{\em size}]the size of the value part of the new item. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the new array item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__SIMPLE__ARRAYS_ga41a031d46e1c8341d0f442dfe849e29b}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-destroy@{ci\_\-array\_\-destroy}}
+\index{ci\_\-array\_\-destroy@{ci\_\-array\_\-destroy}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-array\_\-destroy ({\bf ci\_\-array\_\-t} $\ast$ {\em array})}}
+\label{group__SIMPLE__ARRAYS_ga41a031d46e1c8341d0f442dfe849e29b}
+
+
+Destroy an ci\_\-array\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em array}]a pointer to ci\_\-array\_\-t object to be destroyed \end{DoxyParams}
+\hypertarget{group__SIMPLE__ARRAYS_gabdd79d08b37d9bfd1577ce52ece12a5c}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-get\_\-item@{ci\_\-array\_\-get\_\-item}}
+\index{ci\_\-array\_\-get\_\-item@{ci\_\-array\_\-get\_\-item}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-get\_\-item}]{\setlength{\rightskip}{0pt plus 5cm}const ci\_\-array\_\-item\_\-t$\ast$ ci\_\-array\_\-get\_\-item ({\bf ci\_\-array\_\-t} $\ast$ {\em array}, \/  int {\em pos})}}
+\label{group__SIMPLE__ARRAYS_gabdd79d08b37d9bfd1577ce52ece12a5c}
+
+
+Get an item of the array. 
+\begin{DoxyParams}{Parameters}
+\item[{\em array}]a pointer to the ci\_\-array\_\-t object \item[{\em pos}]The position of the item in array \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the array item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__SIMPLE__ARRAYS_gacb8aadb5dacd5a6e9c9de728601d5977}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-iterate@{ci\_\-array\_\-iterate}}
+\index{ci\_\-array\_\-iterate@{ci\_\-array\_\-iterate}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-iterate}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-array\_\-iterate (const {\bf ci\_\-array\_\-t} $\ast$ {\em array}, \/  void $\ast$ {\em data}, \/  int($\ast$)(void $\ast$data, const char $\ast$name, const void $\ast$) {\em fn})}}
+\label{group__SIMPLE__ARRAYS_gacb8aadb5dacd5a6e9c9de728601d5977}
+
+
+Run the given function for each array item. 
+\begin{DoxyParams}{Parameters}
+\item[{\em array}]a pointer to the ci\_\-array\_\-t object \item[{\em data}]a pointer to data which will be passed on fn function \item[{\em fn}]a pointer to the function which will be run for each array item. The iteration will stop if the fn function return non zero value \end{DoxyParams}
+\hypertarget{group__SIMPLE__ARRAYS_ga2ea1f00c1df7ca10c9a612891d085bef}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-new@{ci\_\-array\_\-new}}
+\index{ci\_\-array\_\-new@{ci\_\-array\_\-new}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-array\_\-t}$\ast$ ci\_\-array\_\-new (size\_\-t {\em max\_\-mem\_\-size})}}
+\label{group__SIMPLE__ARRAYS_ga2ea1f00c1df7ca10c9a612891d085bef}
+
+
+Allocate the required memory and initialize an ci\_\-array\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em max\_\-mem\_\-size}]the maximum memory to use \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the allocated object on success, or NULL on failure 
+\end{DoxyReturn}
+\hypertarget{group__SIMPLE__ARRAYS_gaeec8ec3aaee4be84d57b1f0e19abcfba}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-new2@{ci\_\-array\_\-new2}}
+\index{ci\_\-array\_\-new2@{ci\_\-array\_\-new2}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-new2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-array\_\-t}$\ast$ ci\_\-array\_\-new2 (size\_\-t {\em items}, \/  size\_\-t {\em item\_\-size})}}
+\label{group__SIMPLE__ARRAYS_gaeec8ec3aaee4be84d57b1f0e19abcfba}
+
+
+Create and initialize an ci\_\-array\_\-t object for the given number of items. 
+\begin{DoxyParams}{Parameters}
+\item[{\em items}]the maximum aray items \item[{\em item\_\-size}]the items size \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the allocated object on success, or NULL on failure 
+\end{DoxyReturn}
+\hypertarget{group__SIMPLE__ARRAYS_ga87cf1f8199d58d2138f22697f611d76f}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-pop@{ci\_\-array\_\-pop}}
+\index{ci\_\-array\_\-pop@{ci\_\-array\_\-pop}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-pop}]{\setlength{\rightskip}{0pt plus 5cm}const ci\_\-array\_\-item\_\-t$\ast$ ci\_\-array\_\-pop ({\bf ci\_\-array\_\-t} $\ast$ {\em array})}}
+\label{group__SIMPLE__ARRAYS_ga87cf1f8199d58d2138f22697f611d76f}
+
+
+Delete the last element of the array. 
+\begin{DoxyParams}{Parameters}
+\item[{\em array}]a pointer to the ci\_\-array\_\-t object \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the popped array item on success, NULL otherwise 
+\end{DoxyReturn}
+\hypertarget{group__SIMPLE__ARRAYS_gaa6879d90b23e4a1cd17cdebd389b2b6e}{
+\index{SIMPLE\_\-ARRAYS@{SIMPLE\_\-ARRAYS}!ci\_\-array\_\-search@{ci\_\-array\_\-search}}
+\index{ci\_\-array\_\-search@{ci\_\-array\_\-search}!SIMPLE_ARRAYS@{SIMPLE\_\-ARRAYS}}
+\subsubsection[{ci\_\-array\_\-search}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ ci\_\-array\_\-search ({\bf ci\_\-array\_\-t} $\ast$ {\em array}, \/  const char $\ast$ {\em name})}}
+\label{group__SIMPLE__ARRAYS_gaa6879d90b23e4a1cd17cdebd389b2b6e}
+
+
+Search in an array for an item with the given name. 
+\begin{DoxyParams}{Parameters}
+\item[{\em array}]a pointer to the ci\_\-array\_\-t object \item[{\em name}]the item to be search for. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the value pair of the array item if found, NULL otherwise 
+\end{DoxyReturn}

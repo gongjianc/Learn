@@ -1,0 +1,89 @@
+\hypertarget{group__CACHE}{
+\section{cache api}
+\label{group__CACHE}\index{cache api@{cache api}}
+}
+
+
+Macros, functions and structures used to implement and use c-\/icap cache.  
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structci__cache__type}{ci\_\-cache\_\-type}
+\begin{DoxyCompactList}\small\item\em A struct which implements a cache type. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structci__cache}{ci\_\-cache}
+\begin{DoxyCompactList}\small\item\em The ci\_\-cache\_\-t struct. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structci__cache__type}{ci\_\-cache\_\-type} \hyperlink{group__CACHE_ga2547be1d5fdb02626e6f63a419bac6bd}{ci\_\-cache\_\-type\_\-t}
+\begin{DoxyCompactList}\small\item\em A struct which implements a cache type. \item\end{DoxyCompactList}\item 
+\hypertarget{group__CACHE_ga35209cf859994cb24ffd32932974b750}{
+typedef struct \hyperlink{structci__cache}{ci\_\-cache} \hyperlink{group__CACHE_ga35209cf859994cb24ffd32932974b750}{ci\_\-cache\_\-t}}
+\label{group__CACHE_ga35209cf859994cb24ffd32932974b750}
+
+\begin{DoxyCompactList}\small\item\em The ci\_\-cache\_\-t struct. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__CACHE_gad4dbee8097b9108838f4ba32603468d0}{
+void \hyperlink{group__CACHE_gad4dbee8097b9108838f4ba32603468d0}{ci\_\-cache\_\-type\_\-register} (const struct \hyperlink{structci__cache__type}{ci\_\-cache\_\-type} $\ast$type)}
+\label{group__CACHE_gad4dbee8097b9108838f4ba32603468d0}
+
+\begin{DoxyCompactList}\small\item\em Register a cache type to c-\/icap server. \item\end{DoxyCompactList}\item 
+\hyperlink{structci__cache}{ci\_\-cache\_\-t} $\ast$ \hyperlink{group__CACHE_gab763186f35fc485777a5316bb5eb77fe}{ci\_\-cache\_\-build} (const char $\ast$name, const char $\ast$cache\_\-type, unsigned int cache\_\-size, unsigned int max\_\-object\_\-size, int ttl, const ci\_\-type\_\-ops\_\-t $\ast$key\_\-ops)
+\begin{DoxyCompactList}\small\item\em Builds a cache and return a pointer to the ci\_\-cache\_\-t object. \item\end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__CACHE_gaf9206185729dcf6b3df57d49fea7262d}{ci\_\-cache\_\-search} (\hyperlink{structci__cache}{ci\_\-cache\_\-t} $\ast$cache, const void $\ast$key, void $\ast$$\ast$val, void $\ast$data, void $\ast$($\ast$dup\_\-from\_\-cache)(const void $\ast$stored\_\-val, size\_\-t stored\_\-val\_\-size, void $\ast$data))
+\begin{DoxyCompactList}\small\item\em Searchs a cache for a stored object If the dup\_\-from\_\-cache parameter is NULL, the returned value must be released using the ci\_\-buffer\_\-free function. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__CACHE_ga5444f3840260228614820cbd2ed11dc3}{ci\_\-cache\_\-update} (\hyperlink{structci__cache}{ci\_\-cache\_\-t} $\ast$cache, const void $\ast$key, const void $\ast$val, size\_\-t val\_\-size, void $\ast$($\ast$copy\_\-to\_\-cache)(void $\ast$buf, const void $\ast$val, size\_\-t buf\_\-size))
+\begin{DoxyCompactList}\small\item\em Stores an object to cache. \item\end{DoxyCompactList}\item 
+\hypertarget{group__CACHE_ga46f70ed1ea4dd861f95c45066bda4922}{
+void \hyperlink{group__CACHE_ga46f70ed1ea4dd861f95c45066bda4922}{ci\_\-cache\_\-destroy} (\hyperlink{structci__cache}{ci\_\-cache\_\-t} $\ast$cache)}
+\label{group__CACHE_ga46f70ed1ea4dd861f95c45066bda4922}
+
+\begin{DoxyCompactList}\small\item\em Destroy a cache\_\-t object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Macros, functions and structures used to implement and use c-\/icap cache. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__CACHE_ga2547be1d5fdb02626e6f63a419bac6bd}{
+\index{CACHE@{CACHE}!ci\_\-cache\_\-type\_\-t@{ci\_\-cache\_\-type\_\-t}}
+\index{ci\_\-cache\_\-type\_\-t@{ci\_\-cache\_\-type\_\-t}!CACHE@{CACHE}}
+\subsubsection[{ci\_\-cache\_\-type\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf ci\_\-cache\_\-type}  {\bf ci\_\-cache\_\-type\_\-t}}}
+\label{group__CACHE_ga2547be1d5fdb02626e6f63a419bac6bd}
+
+
+A struct which implements a cache type. Modules implement a cache type, needs to implement members of this structure. 
+
+\subsection{Function Documentation}
+\hypertarget{group__CACHE_gab763186f35fc485777a5316bb5eb77fe}{
+\index{CACHE@{CACHE}!ci\_\-cache\_\-build@{ci\_\-cache\_\-build}}
+\index{ci\_\-cache\_\-build@{ci\_\-cache\_\-build}!CACHE@{CACHE}}
+\subsubsection[{ci\_\-cache\_\-build}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-cache\_\-t}$\ast$ ci\_\-cache\_\-build (const char $\ast$ {\em name}, \/  const char $\ast$ {\em cache\_\-type}, \/  unsigned int {\em cache\_\-size}, \/  unsigned int {\em max\_\-object\_\-size}, \/  int {\em ttl}, \/  const ci\_\-type\_\-ops\_\-t $\ast$ {\em key\_\-ops})\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}
+\label{group__CACHE_gab763186f35fc485777a5316bb5eb77fe}
+
+
+Builds a cache and return a pointer to the ci\_\-cache\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em cache\_\-type}]The cache type to use. If the cache type not found return a cache object of type \char`\"{}local\char`\"{} \item[{\em cache\_\-size}]The size of the cache \item[{\em max\_\-object\_\-size}]The maximum object size to store in cache \item[{\em ttl}]The ttl value for cached items in this cache \item[{\em key\_\-ops}]If not null, the ci\_\-types\_\-ops\_\-t object to use for comparing keys. By default keys are considered as c strings. \end{DoxyParams}
+\hypertarget{group__CACHE_gaf9206185729dcf6b3df57d49fea7262d}{
+\index{CACHE@{CACHE}!ci\_\-cache\_\-search@{ci\_\-cache\_\-search}}
+\index{ci\_\-cache\_\-search@{ci\_\-cache\_\-search}!CACHE@{CACHE}}
+\subsubsection[{ci\_\-cache\_\-search}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ ci\_\-cache\_\-search ({\bf ci\_\-cache\_\-t} $\ast$ {\em cache}, \/  const void $\ast$ {\em key}, \/  void $\ast$$\ast$ {\em val}, \/  void $\ast$ {\em data}, \/  void $\ast$($\ast$)(const void $\ast$stored\_\-val, size\_\-t stored\_\-val\_\-size, void $\ast$data) {\em dup\_\-from\_\-cache})}}
+\label{group__CACHE_gaf9206185729dcf6b3df57d49fea7262d}
+
+
+Searchs a cache for a stored object If the dup\_\-from\_\-cache parameter is NULL, the returned value must be released using the ci\_\-buffer\_\-free function. 
+\begin{DoxyParams}{Parameters}
+\item[{\em cache}]Pointer to the ci\_\-cache\_\-t object \item[{\em key}]Pointer to the key to search for \item[{\em val}]Pointer to store the pointer of returned value \item[{\em data}]Pointer to void object which will be passed to dup\_\-from\_\-cache function \item[{\em dup\_\-from\_\-cache}]Pointer to function which will be used to allocate memory and copy the stored value. \end{DoxyParams}
+\hypertarget{group__CACHE_ga5444f3840260228614820cbd2ed11dc3}{
+\index{CACHE@{CACHE}!ci\_\-cache\_\-update@{ci\_\-cache\_\-update}}
+\index{ci\_\-cache\_\-update@{ci\_\-cache\_\-update}!CACHE@{CACHE}}
+\subsubsection[{ci\_\-cache\_\-update}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-cache\_\-update ({\bf ci\_\-cache\_\-t} $\ast$ {\em cache}, \/  const void $\ast$ {\em key}, \/  const void $\ast$ {\em val}, \/  size\_\-t {\em val\_\-size}, \/  void $\ast$($\ast$)(void $\ast$buf, const void $\ast$val, size\_\-t buf\_\-size) {\em copy\_\-to\_\-cache})}}
+\label{group__CACHE_ga5444f3840260228614820cbd2ed11dc3}
+
+
+Stores an object to cache. 
+\begin{DoxyParams}{Parameters}
+\item[{\em cache}]Pointer to the ci\_\-cache\_\-t object \item[{\em key}]The key of the stored object \item[{\em val}]Pointer to the object to be stored \item[{\em val\_\-size}]The size of the object to be stored \item[{\em copy\_\-to\_\-cache}]The function to use to copy object to cache. If it is NULL the memcpy is used. \end{DoxyParams}

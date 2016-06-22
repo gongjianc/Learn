@@ -8,7 +8,7 @@
 #define C_ICAP_HEX_VERSION 0x000000040003
 
 /* Define USE_IPV6 if we are supporting ipv6 */
-#if 1
+#if 0
 #define USE_IPV6
 #endif
 

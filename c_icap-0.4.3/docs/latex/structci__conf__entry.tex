@@ -1,0 +1,62 @@
+\hypertarget{structci__conf__entry}{
+\section{ci\_\-conf\_\-entry Struct Reference}
+\label{structci__conf__entry}\index{ci\_\-conf\_\-entry@{ci\_\-conf\_\-entry}}
+}
+
+
+This struct holds a configuration parameter of c-\/icap server.  
+
+
+{\ttfamily \#include $<$cfg\_\-param.h$>$}\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structci__conf__entry_ab185fa1470fc9252b5cfc6babea58b73}{
+const char $\ast$ \hyperlink{structci__conf__entry_ab185fa1470fc9252b5cfc6babea58b73}{name}}
+\label{structci__conf__entry_ab185fa1470fc9252b5cfc6babea58b73}
+
+\begin{DoxyCompactList}\small\item\em The configuration directive. \item\end{DoxyCompactList}\item 
+\hypertarget{structci__conf__entry_a6767ed6ae2ffa7475959456953f0f5b5}{
+void $\ast$ \hyperlink{structci__conf__entry_a6767ed6ae2ffa7475959456953f0f5b5}{data}}
+\label{structci__conf__entry_a6767ed6ae2ffa7475959456953f0f5b5}
+
+\begin{DoxyCompactList}\small\item\em A pointer to the configuration data. \item\end{DoxyCompactList}\item 
+int($\ast$ \hyperlink{structci__conf__entry_a590f0f7422f75f66b40a7e8155c3fd35}{action} )(const char $\ast$\hyperlink{structci__conf__entry_ab185fa1470fc9252b5cfc6babea58b73}{name}, const char $\ast$$\ast$argv, void $\ast$setdata)
+\begin{DoxyCompactList}\small\item\em Pointer to the function which will be used to set configuration data. \item\end{DoxyCompactList}\item 
+\hypertarget{structci__conf__entry_a41ecb36cd097e17fe2a14ca78338b83d}{
+const char $\ast$ \hyperlink{structci__conf__entry_a41ecb36cd097e17fe2a14ca78338b83d}{msg}}
+\label{structci__conf__entry_a41ecb36cd097e17fe2a14ca78338b83d}
+
+\begin{DoxyCompactList}\small\item\em A description message. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This struct holds a configuration parameter of c-\/icap server. An array of \hyperlink{structci__conf__entry}{ci\_\-conf\_\-entry} structs can be used to define the configuration directives of a service or module which can be set in c-\/icap configuration file. 
+\begin{DoxyCode}
+ int AParam;
+ struct ci_conf_entry conf_table[]= {
+ {"Aparameter", &AParam, ci_cfg_set_int, "This is a simple configuration paramete
+      r"},
+  {NULL,NULL,NULL,NULL}
+ }
+\end{DoxyCode}
+ In the above example the ci\_\-cfg\_\-set\_\-int function is predefined. If the table \char`\"{}conf\_\-table\char`\"{} attached to the service \char`\"{}AService\char`\"{} then the AParam integer variable can be set from the c-\/icap configuration file using the directive \char`\"{}AService.Aparameter\char`\"{} 
+
+\subsection{Field Documentation}
+\hypertarget{structci__conf__entry_a590f0f7422f75f66b40a7e8155c3fd35}{
+\index{ci\_\-conf\_\-entry@{ci\_\-conf\_\-entry}!action@{action}}
+\index{action@{action}!ci_conf_entry@{ci\_\-conf\_\-entry}}
+\subsubsection[{action}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf ci\_\-conf\_\-entry::action})(const char $\ast${\bf name}, const char $\ast$$\ast$argv, void $\ast$setdata)}}
+\label{structci__conf__entry_a590f0f7422f75f66b40a7e8155c3fd35}
+
+
+Pointer to the function which will be used to set configuration data. 
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]is the configuration directive.It passed as argument by the c-\/icap server \item[{\em argv}]is a NULL termined string array which holds the list of arguments of configuration parameter \item[{\em setdata}]is o pointer to set data which passed as argument by c-\/icap server \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Non zero on success, zero otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+include/cfg\_\-param.h\end{DoxyCompactItemize}

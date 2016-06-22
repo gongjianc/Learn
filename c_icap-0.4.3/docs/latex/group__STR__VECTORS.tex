@@ -1,0 +1,52 @@
+\hypertarget{group__STR__VECTORS}{
+\section{Vectors of strings}
+\label{group__STR__VECTORS}\index{Vectors of strings@{Vectors of strings}}
+}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{group__VECTORS_ga911840034b768c5380eba22ad04d3c66}{ci\_\-vector\_\-t} \hyperlink{group__STR__VECTORS_ga6b0d497303a6f84dd117722d0d3d5458}{ci\_\-str\_\-vector\_\-t}
+\begin{DoxyCompactList}\small\item\em The ci\_\-str\_\-vector is used to implement string vectors. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__STR__VECTORS_gacce606c651cf5cf8726027c2bb170faf}{ci\_\-str\_\-vector\_\-iterate} (const \hyperlink{group__STR__VECTORS_ga6b0d497303a6f84dd117722d0d3d5458}{ci\_\-str\_\-vector\_\-t} $\ast$vector, void $\ast$data, int($\ast$fn)(void $\ast$data, const char $\ast$))
+\begin{DoxyCompactList}\small\item\em Run the given function for each string vector item. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{group__STR__VECTORS_ga16b28bbe7a99831a6a86dafe7fb98b07}{ci\_\-str\_\-vector\_\-search} (\hyperlink{group__STR__VECTORS_ga6b0d497303a6f84dd117722d0d3d5458}{ci\_\-str\_\-vector\_\-t} $\ast$vector, const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Search for a string in a string vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{group__STR__VECTORS_ga6b0d497303a6f84dd117722d0d3d5458}{
+\index{STR\_\-VECTORS@{STR\_\-VECTORS}!ci\_\-str\_\-vector\_\-t@{ci\_\-str\_\-vector\_\-t}}
+\index{ci\_\-str\_\-vector\_\-t@{ci\_\-str\_\-vector\_\-t}!STR_VECTORS@{STR\_\-VECTORS}}
+\subsubsection[{ci\_\-str\_\-vector\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-str\_\-vector\_\-t}}}
+\label{group__STR__VECTORS_ga6b0d497303a6f84dd117722d0d3d5458}
+
+
+The ci\_\-str\_\-vector is used to implement string vectors. The ci\_\-str\_\-vector\_\-create, ci\_\-str\_\-vector\_\-destroy, ci\_\-str\_\-vector\_\-add, and ci\_\-str\_\-vector\_\-pop defines are similar and equivalent to the ci\_\-vector\_\-$\ast$ functions. 
+
+\subsection{Function Documentation}
+\hypertarget{group__STR__VECTORS_gacce606c651cf5cf8726027c2bb170faf}{
+\index{STR\_\-VECTORS@{STR\_\-VECTORS}!ci\_\-str\_\-vector\_\-iterate@{ci\_\-str\_\-vector\_\-iterate}}
+\index{ci\_\-str\_\-vector\_\-iterate@{ci\_\-str\_\-vector\_\-iterate}!STR_VECTORS@{STR\_\-VECTORS}}
+\subsubsection[{ci\_\-str\_\-vector\_\-iterate}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-str\_\-vector\_\-iterate (const {\bf ci\_\-str\_\-vector\_\-t} $\ast$ {\em vector}, \/  void $\ast$ {\em data}, \/  int($\ast$)(void $\ast$data, const char $\ast$) {\em fn})}}
+\label{group__STR__VECTORS_gacce606c651cf5cf8726027c2bb170faf}
+
+
+Run the given function for each string vector item. 
+\begin{DoxyParams}{Parameters}
+\item[{\em vector}]a pointer to the ci\_\-vector\_\-t object \item[{\em data}]a pointer to data which will be passed to the fn function \item[{\em fn}]a pointer to the function which will be run for each string vector item. The iteration will stop if the fn function return non zero value. \end{DoxyParams}
+\hypertarget{group__STR__VECTORS_ga16b28bbe7a99831a6a86dafe7fb98b07}{
+\index{STR\_\-VECTORS@{STR\_\-VECTORS}!ci\_\-str\_\-vector\_\-search@{ci\_\-str\_\-vector\_\-search}}
+\index{ci\_\-str\_\-vector\_\-search@{ci\_\-str\_\-vector\_\-search}!STR_VECTORS@{STR\_\-VECTORS}}
+\subsubsection[{ci\_\-str\_\-vector\_\-search}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ci\_\-str\_\-vector\_\-search ({\bf ci\_\-str\_\-vector\_\-t} $\ast$ {\em vector}, \/  const char $\ast$ {\em str})}}
+\label{group__STR__VECTORS_ga16b28bbe7a99831a6a86dafe7fb98b07}
+
+
+Search for a string in a string vector. 
+\begin{DoxyParams}{Parameters}
+\item[{\em vector}]a pointer to the ci\_\-vector\_\-t object \item[{\em str}]the string to search for \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the new item on success, NULL otherwise 
+\end{DoxyReturn}

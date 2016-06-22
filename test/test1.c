@@ -54,7 +54,7 @@ int web_URLDecode(const char* str, const int strSize, char* result, const int re
 
 int main(void)
 {
-    FILE *fp = fopen("163mail_body.txt", "r");
+    FILE *fp = fopen("QQmail.txt", "r");
     if(NULL == fp){
         perror("fopen");
         return -1;
@@ -75,9 +75,10 @@ int main(void)
 
     int res1 = web_URLDecode(str, strlen(str), strResult, strlen(str));
 
-    printf("res1 = %d\n", res1);
+    //printf("res1 = %d\n", res1);
 
     printf("\n\nThe result is :\n%s\n", strResult);
+    
     
     free(str);
     free(strResult);

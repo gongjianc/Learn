@@ -1,0 +1,46 @@
+\hypertarget{group__PTR__DYNAMIC__ARRAYS}{
+\section{Dynamic arrays of pointers related API}
+\label{group__PTR__DYNAMIC__ARRAYS}\index{Dynamic arrays of pointers related API@{Dynamic arrays of pointers related API}}
+}
+
+
+Arrays which store name/value pair items.  
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{group__DYNAMIC__ARRAYS_ga26fd79bb931b37f9c02deca8da6fe638}{ci\_\-dyn\_\-array\_\-t} \hyperlink{group__PTR__DYNAMIC__ARRAYS_gaacb64c1838c9487e46698b597537f130}{ci\_\-ptr\_\-dyn\_\-array\_\-t}
+\begin{DoxyCompactList}\small\item\em An alias to the ci\_\-dyn\_\-array\_\-t object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const ci\_\-array\_\-item\_\-t $\ast$ \hyperlink{group__PTR__DYNAMIC__ARRAYS_ga857c52c31b06d749bd8809f34976766e}{ci\_\-ptr\_\-dyn\_\-array\_\-add} (\hyperlink{group__PTR__DYNAMIC__ARRAYS_gaacb64c1838c9487e46698b597537f130}{ci\_\-ptr\_\-dyn\_\-array\_\-t} $\ast$ptr\_\-array, const char $\ast$name, void $\ast$pointer)
+\begin{DoxyCompactList}\small\item\em Add an name/value pair item to the array. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Arrays which store name/value pair items. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__PTR__DYNAMIC__ARRAYS_gaacb64c1838c9487e46698b597537f130}{
+\index{PTR\_\-DYNAMIC\_\-ARRAYS@{PTR\_\-DYNAMIC\_\-ARRAYS}!ci\_\-ptr\_\-dyn\_\-array\_\-t@{ci\_\-ptr\_\-dyn\_\-array\_\-t}}
+\index{ci\_\-ptr\_\-dyn\_\-array\_\-t@{ci\_\-ptr\_\-dyn\_\-array\_\-t}!PTR_DYNAMIC_ARRAYS@{PTR\_\-DYNAMIC\_\-ARRAYS}}
+\subsubsection[{ci\_\-ptr\_\-dyn\_\-array\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-ptr\_\-dyn\_\-array\_\-t}}}
+\label{group__PTR__DYNAMIC__ARRAYS_gaacb64c1838c9487e46698b597537f130}
+
+
+An alias to the ci\_\-dyn\_\-array\_\-t object. It is used to store pointers to an array. The ci\_\-ptr\_\-dyn\_\-array\_\-new, ci\_\-ptr\_\-dyn\_\-array\_\-destroy, ci\_\-ptr\_\-dyn\_\-array\_\-search and ci\_\-ptr\_\-dyn\_\-array\_\-iterate defines are equivalent to the ci\_\-dyn\_\-array\_\-$\ast$ functions with the required typecasting. 
+
+\subsection{Function Documentation}
+\hypertarget{group__PTR__DYNAMIC__ARRAYS_ga857c52c31b06d749bd8809f34976766e}{
+\index{PTR\_\-DYNAMIC\_\-ARRAYS@{PTR\_\-DYNAMIC\_\-ARRAYS}!ci\_\-ptr\_\-dyn\_\-array\_\-add@{ci\_\-ptr\_\-dyn\_\-array\_\-add}}
+\index{ci\_\-ptr\_\-dyn\_\-array\_\-add@{ci\_\-ptr\_\-dyn\_\-array\_\-add}!PTR_DYNAMIC_ARRAYS@{PTR\_\-DYNAMIC\_\-ARRAYS}}
+\subsubsection[{ci\_\-ptr\_\-dyn\_\-array\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}const ci\_\-array\_\-item\_\-t$\ast$ ci\_\-ptr\_\-dyn\_\-array\_\-add ({\bf ci\_\-ptr\_\-dyn\_\-array\_\-t} $\ast$ {\em ptr\_\-array}, \/  const char $\ast$ {\em name}, \/  void $\ast$ {\em pointer})}}
+\label{group__PTR__DYNAMIC__ARRAYS_ga857c52c31b06d749bd8809f34976766e}
+
+
+Add an name/value pair item to the array. 
+\begin{DoxyParams}{Parameters}
+\item[{\em ptr\_\-array}]a pointer to the ci\_\-ptr\_\-dyn\_\-array\_\-t object \item[{\em name}]the name part of the name/pointer pair item to be added \item[{\em pointer}]the pointer part of the name/value pair item to be added \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the new array item on success, NULL otherwise 
+\end{DoxyReturn}

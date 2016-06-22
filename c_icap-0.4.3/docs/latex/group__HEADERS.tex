@@ -1,0 +1,202 @@
+\hypertarget{group__HEADERS}{
+\section{Headers related API}
+\label{group__HEADERS}\index{Headers related API@{Headers related API}}
+}
+
+
+Headers manipulation related API.  
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct ci\_\-headers\_\-list \hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t}
+\begin{DoxyCompactList}\small\item\em This is a struct which can store a set of headers. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$ \hyperlink{group__HEADERS_ga7c5cc5d09bd83eb7ecc882ed200e6096}{ci\_\-headers\_\-create} ()
+\begin{DoxyCompactList}\small\item\em Allocate memory for a ci\_\-headers\_\-list\_\-t object and initialize it. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__HEADERS_ga3196c0d95e2dff1af839d657a83c1788}{ci\_\-headers\_\-destroy} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads)
+\begin{DoxyCompactList}\small\item\em Destroy a ci\_\-headers\_\-list\_\-t object. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__HEADERS_gac72053f066dd9ae607bc41b80a37d708}{ci\_\-headers\_\-reset} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads)
+\begin{DoxyCompactList}\small\item\em Resets and initialize a ci\_\-headers\_\-list\_\-t object. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{group__HEADERS_gac2762a25d8931a4accdef1be4bd57217}{ci\_\-headers\_\-add} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Add a header to a ci\_\-headers\_\-list\_\-t object. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__HEADERS_ga58800a415a86551d22329c8049390b11}{ci\_\-headers\_\-addheaders} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, const \hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$someheaders)
+\begin{DoxyCompactList}\small\item\em Append a headers list object to an other headers list. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__HEADERS_ga852cd720c302a7d1b835f63364709e09}{ci\_\-headers\_\-remove} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Removes a header from a header list. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{group__HEADERS_ga6926728df76776452cfd5b887fbc6ea3}{ci\_\-headers\_\-search} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Search for a header in a header list. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{group__HEADERS_ga6a862010fd4c98f189e2671291bac42a}{ci\_\-headers\_\-value} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Search for a header in a header list and return the value of the first occurrence of this header. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{group__HEADERS_ga1f67d85d126fbc2a4aacff2fcb05b851}{ci\_\-headers\_\-copy\_\-value} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, const char $\ast$header, char $\ast$buf, size\_\-t len)
+\begin{DoxyCompactList}\small\item\em Search for a header in a header list and copy the value to a buffer if exist. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__HEADERS_ga3481363b97dcfaaf8af07d4fddb9704c}{ci\_\-headers\_\-iterate} (\hyperlink{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{ci\_\-headers\_\-list\_\-t} $\ast$heads, void $\ast$data, void($\ast$fn)(void $\ast$data, const char $\ast$header\_\-name, const char $\ast$header\_\-value))
+\begin{DoxyCompactList}\small\item\em Run the given function for each header name/value pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Headers manipulation related API. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-list\_\-t@{ci\_\-headers\_\-list\_\-t}}
+\index{ci\_\-headers\_\-list\_\-t@{ci\_\-headers\_\-list\_\-t}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-list\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-headers\_\-list\_\-t}}}
+\label{group__HEADERS_gaaa203ac92dd0242ab66f4237548d7260}
+
+
+This is a struct which can store a set of headers. The developers should not touch ci\_\-headers\_\-list\_\-t objects directly but better use the documented macros and functions 
+
+\subsection{Function Documentation}
+\hypertarget{group__HEADERS_gac2762a25d8931a4accdef1be4bd57217}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-add@{ci\_\-headers\_\-add}}
+\index{ci\_\-headers\_\-add@{ci\_\-headers\_\-add}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ci\_\-headers\_\-add ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  const char $\ast$ {\em header})}}
+\label{group__HEADERS_gac2762a25d8931a4accdef1be4bd57217}
+
+
+Add a header to a ci\_\-headers\_\-list\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object in which the header will be added \item[{\em header}]is the header to be added \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the newly add header on success, NULL otherwise
+\end{DoxyReturn}
+example usage: 
+\begin{DoxyCode}
+  ci_headers_add(heads,"Content-Length: 1025")
+\end{DoxyCode}
+ \hypertarget{group__HEADERS_ga58800a415a86551d22329c8049390b11}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-addheaders@{ci\_\-headers\_\-addheaders}}
+\index{ci\_\-headers\_\-addheaders@{ci\_\-headers\_\-addheaders}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-addheaders}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-headers\_\-addheaders ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  const {\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em someheaders})}}
+\label{group__HEADERS_ga58800a415a86551d22329c8049390b11}
+
+
+Append a headers list object to an other headers list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object in which the headers will be added \item[{\em someheaders}]is a ci\_\-headers\_\-list\_\-t object which contains the headers will be added to the heads \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non zero on success zero otherwise 
+\end{DoxyReturn}
+\hypertarget{group__HEADERS_ga1f67d85d126fbc2a4aacff2fcb05b851}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-copy\_\-value@{ci\_\-headers\_\-copy\_\-value}}
+\index{ci\_\-headers\_\-copy\_\-value@{ci\_\-headers\_\-copy\_\-value}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-copy\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ci\_\-headers\_\-copy\_\-value ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  const char $\ast$ {\em header}, \/  char $\ast$ {\em buf}, \/  size\_\-t {\em len})}}
+\label{group__HEADERS_ga1f67d85d126fbc2a4aacff2fcb05b851}
+
+
+Search for a header in a header list and copy the value to a buffer if exist. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object \item[{\em header}]is the name of the header \item[{\em buf}]is the buffer to store header value \item[{\em len}]is the size of the buffer buf \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the buf on success, NULL otherwise
+\end{DoxyReturn}
+example usage: 
+\begin{DoxyCode}
+ char *headval;
+ char buf[1024];
+ int content_length;
+ headval = ci_headers_copy_value(heads, "Content-Length", buf, sizeof(buf));
+ if (headval)
+     printf("Content-Length: %s\n", buf);
+\end{DoxyCode}
+ \hypertarget{group__HEADERS_ga7c5cc5d09bd83eb7ecc882ed200e6096}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-create@{ci\_\-headers\_\-create}}
+\index{ci\_\-headers\_\-create@{ci\_\-headers\_\-create}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ci\_\-headers\_\-list\_\-t}$\ast$ ci\_\-headers\_\-create ()}}
+\label{group__HEADERS_ga7c5cc5d09bd83eb7ecc882ed200e6096}
+
+
+Allocate memory for a ci\_\-headers\_\-list\_\-t object and initialize it. \begin{DoxyReturn}{Returns}
+the allocated object on success, NULL otherwise. 
+\end{DoxyReturn}
+\hypertarget{group__HEADERS_ga3196c0d95e2dff1af839d657a83c1788}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-destroy@{ci\_\-headers\_\-destroy}}
+\index{ci\_\-headers\_\-destroy@{ci\_\-headers\_\-destroy}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-headers\_\-destroy ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads})}}
+\label{group__HEADERS_ga3196c0d95e2dff1af839d657a83c1788}
+
+
+Destroy a ci\_\-headers\_\-list\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object to be destroyed \end{DoxyParams}
+\hypertarget{group__HEADERS_ga3481363b97dcfaaf8af07d4fddb9704c}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-iterate@{ci\_\-headers\_\-iterate}}
+\index{ci\_\-headers\_\-iterate@{ci\_\-headers\_\-iterate}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-iterate}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-headers\_\-iterate ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  void $\ast$ {\em data}, \/  void($\ast$)(void $\ast$data, const char $\ast$header\_\-name, const char $\ast$header\_\-value) {\em fn})}}
+\label{group__HEADERS_ga3481363b97dcfaaf8af07d4fddb9704c}
+
+
+Run the given function for each header name/value pair. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object \item[{\em data}]is a pointer to data which will passed as first argument to the fn function \item[{\em fn}]is a pointer to a function which will run for each header name/value pair. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non zero on success, zero otherwise 
+\end{DoxyReturn}
+\hypertarget{group__HEADERS_ga852cd720c302a7d1b835f63364709e09}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-remove@{ci\_\-headers\_\-remove}}
+\index{ci\_\-headers\_\-remove@{ci\_\-headers\_\-remove}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}int ci\_\-headers\_\-remove ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  const char $\ast$ {\em header})}}
+\label{group__HEADERS_ga852cd720c302a7d1b835f63364709e09}
+
+
+Removes a header from a header list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object \item[{\em header}]is the name of the header to be removed \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non zero on success, zero otherwise
+\end{DoxyReturn}
+example usage: 
+\begin{DoxyCode}
+  ci_headers_remove(heads,"Content-Length")
+\end{DoxyCode}
+ \hypertarget{group__HEADERS_gac72053f066dd9ae607bc41b80a37d708}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-reset@{ci\_\-headers\_\-reset}}
+\index{ci\_\-headers\_\-reset@{ci\_\-headers\_\-reset}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}void ci\_\-headers\_\-reset ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads})}}
+\label{group__HEADERS_gac72053f066dd9ae607bc41b80a37d708}
+
+
+Resets and initialize a ci\_\-headers\_\-list\_\-t object. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]pointer to the ci\_\-headers\_\-list\_\-t object to be reset \end{DoxyParams}
+\hypertarget{group__HEADERS_ga6926728df76776452cfd5b887fbc6ea3}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-search@{ci\_\-headers\_\-search}}
+\index{ci\_\-headers\_\-search@{ci\_\-headers\_\-search}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-search}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ci\_\-headers\_\-search ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  const char $\ast$ {\em header})}}
+\label{group__HEADERS_ga6926728df76776452cfd5b887fbc6ea3}
+
+
+Search for a header in a header list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object \item[{\em header}]is the name of the header \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the start of the first occurrence of the header on success, NULL otherwise
+\end{DoxyReturn}
+example usage: 
+\begin{DoxyCode}
+ char *head;
+ head=ci_headers_search(heads,"Content-Length")
+\end{DoxyCode}
+ In this example on success the head pointer will point to a {\itshape \char`\"{}Content-\/Lenght: 1025\char`\"{}\/} string \hypertarget{group__HEADERS_ga6a862010fd4c98f189e2671291bac42a}{
+\index{HEADERS@{HEADERS}!ci\_\-headers\_\-value@{ci\_\-headers\_\-value}}
+\index{ci\_\-headers\_\-value@{ci\_\-headers\_\-value}!HEADERS@{HEADERS}}
+\subsubsection[{ci\_\-headers\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ ci\_\-headers\_\-value ({\bf ci\_\-headers\_\-list\_\-t} $\ast$ {\em heads}, \/  const char $\ast$ {\em header})}}
+\label{group__HEADERS_ga6a862010fd4c98f189e2671291bac42a}
+
+
+Search for a header in a header list and return the value of the first occurrence of this header. 
+\begin{DoxyParams}{Parameters}
+\item[{\em heads}]is a pointer to the ci\_\-headers\_\-list\_\-t object \item[{\em header}]is the name of the header \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the start of the header on success, NULL otherwise
+\end{DoxyReturn}
+example usage: 
+\begin{DoxyCode}
+ char *headval;
+ int content_length;
+ headval = ci_headers_value(heads,"Content-Length");
+ content_length = strtol(headval,NULL,10);
+\end{DoxyCode}
+ 
