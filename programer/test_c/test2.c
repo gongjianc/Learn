@@ -12,6 +12,7 @@ int main(void)
     char *str = "hello";
     getMemory(str);
     strcpy(str, "hello world");
+    
     printf("%s\n", str);
     return 0;
 }
