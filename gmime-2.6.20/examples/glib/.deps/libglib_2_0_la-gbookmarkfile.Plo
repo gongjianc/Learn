@@ -1,0 +1,433 @@
+libglib_2_0_la-gbookmarkfile.lo: ../../glib-2.39.92/glib/gbookmarkfile.c \
+ ../config.h ../../glib-2.39.92/glib/gbookmarkfile.h \
+ ../../glib-2.39.92/glib/gerror.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stdarg.h \
+ ../../glib-2.39.92/glib/gquark.h ../../glib-2.39.92/glib/gtypes.h \
+ glibconfig.h ../../glib-2.39.92/glib/gmacros.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stddef.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/limits.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/stdio_lim.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/float.h \
+ ../../glib-2.39.92/glib/gversionmacros.h /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/timex.h \
+ /usr/include/xlocale.h /usr/include/stdio.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/include/bits/sys_errlist.h /usr/include/bits/stdio.h \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/sys/types.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/sigset.h \
+ /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/alloca.h /usr/include/string.h /usr/include/bits/string.h \
+ /usr/include/bits/string2.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/uio.h \
+ /usr/include/bits/stat.h /usr/include/locale.h \
+ /usr/include/bits/locale.h ../../glib-2.39.92/glib/gconvert.h \
+ ../../glib-2.39.92/glib/gdataset.h ../../glib-2.39.92/glib/gerror.h \
+ ../../glib-2.39.92/glib/gfileutils.h ../../glib-2.39.92/glib/ghash.h \
+ ../../glib-2.39.92/glib/glist.h ../../glib-2.39.92/glib/gmem.h \
+ ../../glib-2.39.92/glib/gnode.h ../../glib-2.39.92/glib/glibintl.h \
+ /usr/include/libintl.h ../../glib-2.39.92/glib/glist.h \
+ ../../glib-2.39.92/glib/gmain.h ../../glib-2.39.92/glib/gpoll.h \
+ ../../glib-2.39.92/glib/gslist.h ../../glib-2.39.92/glib/gthread.h \
+ ../../glib-2.39.92/glib/gatomic.h ../../glib-2.39.92/glib/gmarkup.h \
+ ../../glib-2.39.92/glib/gmem.h ../../glib-2.39.92/glib/gmessages.h \
+ ../../glib-2.39.92/glib/gshell.h ../../glib-2.39.92/glib/gslice.h \
+ ../../glib-2.39.92/glib/gstdio.h ../../glib-2.39.92/glib/gprintf.h \
+ ../../glib-2.39.92/glib/glib.h ../../glib-2.39.92/glib/galloca.h \
+ ../../glib-2.39.92/glib/garray.h ../../glib-2.39.92/glib/gasyncqueue.h \
+ ../../glib-2.39.92/glib/gbacktrace.h /usr/include/signal.h \
+ /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+ /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+ /usr/include/bits/sigstack.h /usr/include/sys/ucontext.h \
+ /usr/include/bits/sigthread.h ../../glib-2.39.92/glib/gbase64.h \
+ ../../glib-2.39.92/glib/gbitlock.h \
+ ../../glib-2.39.92/glib/gbookmarkfile.h ../../glib-2.39.92/glib/gbytes.h \
+ ../../glib-2.39.92/glib/gcharset.h ../../glib-2.39.92/glib/gchecksum.h \
+ ../../glib-2.39.92/glib/gconvert.h ../../glib-2.39.92/glib/gdataset.h \
+ ../../glib-2.39.92/glib/gdate.h ../../glib-2.39.92/glib/gdatetime.h \
+ ../../glib-2.39.92/glib/gtimezone.h ../../glib-2.39.92/glib/gdir.h \
+ /usr/include/dirent.h /usr/include/bits/dirent.h \
+ ../../glib-2.39.92/glib/genviron.h ../../glib-2.39.92/glib/gfileutils.h \
+ ../../glib-2.39.92/glib/ggettext.h ../../glib-2.39.92/glib/ghash.h \
+ ../../glib-2.39.92/glib/ghmac.h ../../glib-2.39.92/glib/gchecksum.h \
+ ../../glib-2.39.92/glib/ghook.h ../../glib-2.39.92/glib/ghostutils.h \
+ ../../glib-2.39.92/glib/giochannel.h ../../glib-2.39.92/glib/gmain.h \
+ ../../glib-2.39.92/glib/gstring.h ../../glib-2.39.92/glib/gunicode.h \
+ ../../glib-2.39.92/glib/gutils.h ../../glib-2.39.92/glib/gkeyfile.h \
+ ../../glib-2.39.92/glib/gmappedfile.h ../../glib-2.39.92/glib/gmarkup.h \
+ ../../glib-2.39.92/glib/gmessages.h ../../glib-2.39.92/glib/goption.h \
+ ../../glib-2.39.92/glib/gpattern.h ../../glib-2.39.92/glib/gprimes.h \
+ ../../glib-2.39.92/glib/gqsort.h ../../glib-2.39.92/glib/gqueue.h \
+ ../../glib-2.39.92/glib/grand.h ../../glib-2.39.92/glib/gregex.h \
+ ../../glib-2.39.92/glib/gscanner.h ../../glib-2.39.92/glib/gsequence.h \
+ ../../glib-2.39.92/glib/gshell.h ../../glib-2.39.92/glib/gslice.h \
+ ../../glib-2.39.92/glib/gspawn.h ../../glib-2.39.92/glib/gstrfuncs.h \
+ ../../glib-2.39.92/glib/gstringchunk.h \
+ ../../glib-2.39.92/glib/gtestutils.h \
+ ../../glib-2.39.92/glib/gthreadpool.h ../../glib-2.39.92/glib/gtimer.h \
+ ../../glib-2.39.92/glib/gtrashstack.h ../../glib-2.39.92/glib/gtree.h \
+ ../../glib-2.39.92/glib/gurifuncs.h \
+ ../../glib-2.39.92/glib/gvarianttype.h \
+ ../../glib-2.39.92/glib/gvariant.h ../../glib-2.39.92/glib/gversion.h \
+ ../../glib-2.39.92/glib/deprecated/gallocator.h \
+ ../../glib-2.39.92/glib/deprecated/gcache.h \
+ ../../glib-2.39.92/glib/deprecated/gcompletion.h \
+ ../../glib-2.39.92/glib/deprecated/gmain.h \
+ ../../glib-2.39.92/glib/deprecated/grel.h \
+ ../../glib-2.39.92/glib/deprecated/gthread.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/setjmp.h /usr/include/sys/stat.h \
+ ../../glib-2.39.92/glib/gstring.h ../../glib-2.39.92/glib/gstrfuncs.h \
+ ../../glib-2.39.92/glib/gtimer.h ../../glib-2.39.92/glib/gutils.h
+
+../config.h:
+
+../../glib-2.39.92/glib/gbookmarkfile.h:
+
+../../glib-2.39.92/glib/gerror.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stdarg.h:
+
+../../glib-2.39.92/glib/gquark.h:
+
+../../glib-2.39.92/glib/gtypes.h:
+
+glibconfig.h:
+
+../../glib-2.39.92/glib/gmacros.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stddef.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/limits.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/xopen_lim.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/float.h:
+
+../../glib-2.39.92/glib/gversionmacros.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/bits/timex.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/alloca.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/string.h:
+
+/usr/include/bits/string2.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/uio.h:
+
+/usr/include/bits/stat.h:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+../../glib-2.39.92/glib/gconvert.h:
+
+../../glib-2.39.92/glib/gdataset.h:
+
+../../glib-2.39.92/glib/gerror.h:
+
+../../glib-2.39.92/glib/gfileutils.h:
+
+../../glib-2.39.92/glib/ghash.h:
+
+../../glib-2.39.92/glib/glist.h:
+
+../../glib-2.39.92/glib/gmem.h:
+
+../../glib-2.39.92/glib/gnode.h:
+
+../../glib-2.39.92/glib/glibintl.h:
+
+/usr/include/libintl.h:
+
+../../glib-2.39.92/glib/glist.h:
+
+../../glib-2.39.92/glib/gmain.h:
+
+../../glib-2.39.92/glib/gpoll.h:
+
+../../glib-2.39.92/glib/gslist.h:
+
+../../glib-2.39.92/glib/gthread.h:
+
+../../glib-2.39.92/glib/gatomic.h:
+
+../../glib-2.39.92/glib/gmarkup.h:
+
+../../glib-2.39.92/glib/gmem.h:
+
+../../glib-2.39.92/glib/gmessages.h:
+
+../../glib-2.39.92/glib/gshell.h:
+
+../../glib-2.39.92/glib/gslice.h:
+
+../../glib-2.39.92/glib/gstdio.h:
+
+../../glib-2.39.92/glib/gprintf.h:
+
+../../glib-2.39.92/glib/glib.h:
+
+../../glib-2.39.92/glib/galloca.h:
+
+../../glib-2.39.92/glib/garray.h:
+
+../../glib-2.39.92/glib/gasyncqueue.h:
+
+../../glib-2.39.92/glib/gbacktrace.h:
+
+/usr/include/signal.h:
+
+/usr/include/bits/signum.h:
+
+/usr/include/bits/siginfo.h:
+
+/usr/include/bits/sigaction.h:
+
+/usr/include/bits/sigcontext.h:
+
+/usr/include/bits/sigstack.h:
+
+/usr/include/sys/ucontext.h:
+
+/usr/include/bits/sigthread.h:
+
+../../glib-2.39.92/glib/gbase64.h:
+
+../../glib-2.39.92/glib/gbitlock.h:
+
+../../glib-2.39.92/glib/gbookmarkfile.h:
+
+../../glib-2.39.92/glib/gbytes.h:
+
+../../glib-2.39.92/glib/gcharset.h:
+
+../../glib-2.39.92/glib/gchecksum.h:
+
+../../glib-2.39.92/glib/gconvert.h:
+
+../../glib-2.39.92/glib/gdataset.h:
+
+../../glib-2.39.92/glib/gdate.h:
+
+../../glib-2.39.92/glib/gdatetime.h:
+
+../../glib-2.39.92/glib/gtimezone.h:
+
+../../glib-2.39.92/glib/gdir.h:
+
+/usr/include/dirent.h:
+
+/usr/include/bits/dirent.h:
+
+../../glib-2.39.92/glib/genviron.h:
+
+../../glib-2.39.92/glib/gfileutils.h:
+
+../../glib-2.39.92/glib/ggettext.h:
+
+../../glib-2.39.92/glib/ghash.h:
+
+../../glib-2.39.92/glib/ghmac.h:
+
+../../glib-2.39.92/glib/gchecksum.h:
+
+../../glib-2.39.92/glib/ghook.h:
+
+../../glib-2.39.92/glib/ghostutils.h:
+
+../../glib-2.39.92/glib/giochannel.h:
+
+../../glib-2.39.92/glib/gmain.h:
+
+../../glib-2.39.92/glib/gstring.h:
+
+../../glib-2.39.92/glib/gunicode.h:
+
+../../glib-2.39.92/glib/gutils.h:
+
+../../glib-2.39.92/glib/gkeyfile.h:
+
+../../glib-2.39.92/glib/gmappedfile.h:
+
+../../glib-2.39.92/glib/gmarkup.h:
+
+../../glib-2.39.92/glib/gmessages.h:
+
+../../glib-2.39.92/glib/goption.h:
+
+../../glib-2.39.92/glib/gpattern.h:
+
+../../glib-2.39.92/glib/gprimes.h:
+
+../../glib-2.39.92/glib/gqsort.h:
+
+../../glib-2.39.92/glib/gqueue.h:
+
+../../glib-2.39.92/glib/grand.h:
+
+../../glib-2.39.92/glib/gregex.h:
+
+../../glib-2.39.92/glib/gscanner.h:
+
+../../glib-2.39.92/glib/gsequence.h:
+
+../../glib-2.39.92/glib/gshell.h:
+
+../../glib-2.39.92/glib/gslice.h:
+
+../../glib-2.39.92/glib/gspawn.h:
+
+../../glib-2.39.92/glib/gstrfuncs.h:
+
+../../glib-2.39.92/glib/gstringchunk.h:
+
+../../glib-2.39.92/glib/gtestutils.h:
+
+../../glib-2.39.92/glib/gthreadpool.h:
+
+../../glib-2.39.92/glib/gtimer.h:
+
+../../glib-2.39.92/glib/gtrashstack.h:
+
+../../glib-2.39.92/glib/gtree.h:
+
+../../glib-2.39.92/glib/gurifuncs.h:
+
+../../glib-2.39.92/glib/gvarianttype.h:
+
+../../glib-2.39.92/glib/gvariant.h:
+
+../../glib-2.39.92/glib/gversion.h:
+
+../../glib-2.39.92/glib/deprecated/gallocator.h:
+
+../../glib-2.39.92/glib/deprecated/gcache.h:
+
+../../glib-2.39.92/glib/deprecated/gcompletion.h:
+
+../../glib-2.39.92/glib/deprecated/gmain.h:
+
+../../glib-2.39.92/glib/deprecated/grel.h:
+
+../../glib-2.39.92/glib/deprecated/gthread.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/include/sys/stat.h:
+
+../../glib-2.39.92/glib/gstring.h:
+
+../../glib-2.39.92/glib/gstrfuncs.h:
+
+../../glib-2.39.92/glib/gtimer.h:
+
+../../glib-2.39.92/glib/gutils.h:

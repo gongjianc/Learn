@@ -1,0 +1,152 @@
+libglib_2_0_la-gdataset.lo: ../../glib-2.39.92/glib/gdataset.c \
+ ../config.h /usr/include/string.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stddef.h \
+ /usr/include/xlocale.h /usr/include/bits/string.h \
+ /usr/include/bits/string2.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/stdlib.h ../../glib-2.39.92/glib/gdataset.h \
+ ../../glib-2.39.92/glib/gquark.h ../../glib-2.39.92/glib/gtypes.h \
+ glibconfig.h ../../glib-2.39.92/glib/gmacros.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/limits.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/stdio_lim.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/float.h \
+ ../../glib-2.39.92/glib/gversionmacros.h /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/timex.h \
+ ../../glib-2.39.92/glib/gbitlock.h ../../glib-2.39.92/glib/gslice.h \
+ ../../glib-2.39.92/glib/gdatasetprivate.h \
+ ../../glib-2.39.92/glib/gatomic.h ../../glib-2.39.92/glib/ghash.h \
+ ../../glib-2.39.92/glib/glist.h ../../glib-2.39.92/glib/gmem.h \
+ ../../glib-2.39.92/glib/gnode.h ../../glib-2.39.92/glib/gquark.h \
+ ../../glib-2.39.92/glib/gstrfuncs.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stdarg.h \
+ ../../glib-2.39.92/glib/gtestutils.h ../../glib-2.39.92/glib/gmessages.h \
+ ../../glib-2.39.92/glib/gstring.h ../../glib-2.39.92/glib/gunicode.h \
+ ../../glib-2.39.92/glib/gerror.h ../../glib-2.39.92/glib/gbytes.h \
+ ../../glib-2.39.92/glib/garray.h ../../glib-2.39.92/glib/gutils.h \
+ ../../glib-2.39.92/glib/gslist.h ../../glib-2.39.92/glib/gthread.h \
+ ../../glib-2.39.92/glib/gatomic.h ../../glib-2.39.92/glib/glib_trace.h
+
+../config.h:
+
+/usr/include/string.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/bits/string.h:
+
+/usr/include/bits/string2.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/stdlib.h:
+
+../../glib-2.39.92/glib/gdataset.h:
+
+../../glib-2.39.92/glib/gquark.h:
+
+../../glib-2.39.92/glib/gtypes.h:
+
+glibconfig.h:
+
+../../glib-2.39.92/glib/gmacros.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/limits.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/xopen_lim.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/float.h:
+
+../../glib-2.39.92/glib/gversionmacros.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/timex.h:
+
+../../glib-2.39.92/glib/gbitlock.h:
+
+../../glib-2.39.92/glib/gslice.h:
+
+../../glib-2.39.92/glib/gdatasetprivate.h:
+
+../../glib-2.39.92/glib/gatomic.h:
+
+../../glib-2.39.92/glib/ghash.h:
+
+../../glib-2.39.92/glib/glist.h:
+
+../../glib-2.39.92/glib/gmem.h:
+
+../../glib-2.39.92/glib/gnode.h:
+
+../../glib-2.39.92/glib/gquark.h:
+
+../../glib-2.39.92/glib/gstrfuncs.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/6.1.0/include/stdarg.h:
+
+../../glib-2.39.92/glib/gtestutils.h:
+
+../../glib-2.39.92/glib/gmessages.h:
+
+../../glib-2.39.92/glib/gstring.h:
+
+../../glib-2.39.92/glib/gunicode.h:
+
+../../glib-2.39.92/glib/gerror.h:
+
+../../glib-2.39.92/glib/gbytes.h:
+
+../../glib-2.39.92/glib/garray.h:
+
+../../glib-2.39.92/glib/gutils.h:
+
+../../glib-2.39.92/glib/gslist.h:
+
+../../glib-2.39.92/glib/gthread.h:
+
+../../glib-2.39.92/glib/gatomic.h:
+
+../../glib-2.39.92/glib/glib_trace.h:
