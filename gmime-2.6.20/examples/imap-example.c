@@ -22,8 +22,8 @@
 #include <config.h>
 #endif
 
-#include <glib.h>
-#include <glib/gstdio.h>
+#include "glib/glib.h"
+#include "glib/gstdio.h"
 #include <gmime/gmime.h>
 
 #include <stdio.h>
