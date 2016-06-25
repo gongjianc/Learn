@@ -8,6 +8,7 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 set nocompatible
+
 "开启语法高亮
 syntax enable
 "允许用指定语法高亮配色方案替换默认方案
@@ -66,6 +67,7 @@ call vundle#rc()
 
 " Let Vundle manage itself
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdcommenter'
 "Plugin 'godlygeek/csapprox'
 
 "Plugin 'SirVer/ultisnips'
@@ -73,17 +75,23 @@ Plugin 'Mizuchi/STL-Syntax'
 Plugin 'vim-scripts/a.vim'
 "Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
-
 Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 "?
 let g:auto_save = 1
+
+
+"----------------------------"
+"-------- nerdcommenter------"
+"----------------------------"
+let g:NERDSpaceDelims=1
+
 
 "----------------------------"
 "-------- tarbar      -------"
@@ -138,12 +146,12 @@ let g:tagbar_type_cpp = {
 "----------------------------"
 "-------- solarized   -------"
 "----------------------------"
-"set background=dark
+set background=dark
 "let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 colorscheme solarized
 "airline_theme 设置
-let g:airline_theme='solarized'
+let g:airline_theme='dark'
 let g:bufferline_echo=0
 
 "----------------------------"
@@ -156,14 +164,19 @@ nmap <leader>sch :AS<CR>
 "--------     YCM     -------"
 "----------------------------"
 
+"允许vim加载 .ycm_extra_conf.py 文件，不再提示
 let g:ycm_confirm_extra_conf = 0
 
-let g:ycm_collect_identifiers_from_tags_files = 1
-"set tags+=/data/misc/software/misc./vim/stdcpp.tags
+let g:ycm_server_keep_logfiles =1 
+let g:ycm_server_log_level = 'debug'
 
+let g:ycm_collect_identifiers_from_tags_files = 1
+set tags+=/home/jaygong/c_icap/ctags
+"set tags+=/data/misc/software/misc./vim/stdcpp.tags
 set completeopt-=preview
 
 inoremap <leader>; <C-x><C-o>
+
 let g:ycm_cache_omnifunc = 0
 "语法关键字补全
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -196,6 +209,11 @@ let g:indent_guides_guide_size=1
 let g:ctrlp_map = ',,'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_open_multiple_files = 'v'
+
+let g:ctrlp_prompt_mappings={
+            \ 'AcceptSelection("e")': ['<c-t>'],
+            \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+            \}
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
@@ -247,10 +265,10 @@ endf
 set nocompatible
 "set t_Co=256
  
-let g:minBufExplForceSyntaxEnable = 1
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+"let g:minBufExplForceSyntaxEnable = 1
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
  
 if ! has('gui_running')
    set ttimeoutlen=10
@@ -263,3 +281,5 @@ endif
 set laststatus=2 " Always display the statusline in all windows
 set guifont=Inconsolata\ for\ Powerline:h14
 set noshowmode " Hide the default mode text(e.g. -- INSERT -- below the statusline
+
+"test
