@@ -148,6 +148,7 @@ set background=dark
 let g:solarized_termtrans=1
 colorscheme solarized
 "airline_theme 设置
+"set t_Co=256
 let g:airline_theme='dark'
 let g:bufferline_echo=0
 
@@ -193,15 +194,18 @@ inoremap <leader>; <C-x><C-o>
 "----------------------------"
 "随vim自启动
 let g:indent_guides_enable_on_vim_startup=1
-
+"从第二层开始可视化显示缩进
 let g:indent_guides_start_level=2
-
+"色块宽度
 let g:indent_guides_guide_size=1
 
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
-
-
+"代码折叠
+"基于缩进的代码折叠
+set foldmethod=syntax
+"启动vim时关闭折叠代码
+set nofoldenable
 
 "----------------------------"
 "--------    CtrlP    -------"
