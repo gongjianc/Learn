@@ -1,0 +1,20 @@
+
+This directory contains:
+
+userland/			User space code
+userland/lib/			User space library
+userland/libpcap-XXX-ring/	Libpcap enhanced with PF_RING support
+userland/examples/		PF_RING sample applications
+userland/examples/nDPI	nDPI library and function interface
+userland/examples/session_capv0.0/src	nids tcp process and function interface
+
+
+---------------------
+make   mod_http      make http module program
+make   mod_nids      make nids module program
+make   mod_smtp      make smtp module program
+make   mod_WL        make white list module program
+make   clean         make all object of all module clear
+make   all           make system executable program "session_cap"
+make   install       cp "session_cap" program into current folder
+
