@@ -53,7 +53,7 @@ nnoremap <silent> <leader>ee :!vim ~/.vimrc<CR>
 nmap <silent> <leader>ss :source ~/.vimrc<CR>
 nmap <leader>q :q<CR>
 nnoremap nw <C-W><C-W>
-nmap <C-K> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+nmap <C-K> :!ctags -R --c-kinds=+c+d+e+f+g+l+m+n+p+s+t+u+v+x --fields=+liaS --extra=+q .
 
 "----------Vundle------------"
 "----------------------------"
@@ -80,10 +80,27 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 "?
 let g:auto_save = 1
+
+"----------------------------"
+"-------- vim-go       ------"
+"----------------------------"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+"----------------------------"
+"-------- fold code    ------"
+"----------------------------"
+set foldmethod=syntax
+set nofoldenable
 
 "----------------------------"
 "-------- nerdcommenter------"
@@ -185,8 +202,7 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>je :YcmCompleter GoToDefinition<CR>
-let mapleader=';'
-inoremap <leader>; <C-x><C-o>
+inoremap <leader><leader> <C-x><C-o>
 
 "----------------------------"
 "--------Indent Guides-------"
