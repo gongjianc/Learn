@@ -1,0 +1,2 @@
+exec:
+	cd /home/jaygong; pwd

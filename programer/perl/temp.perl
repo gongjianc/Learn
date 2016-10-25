@@ -6,4 +6,3 @@ while($celsius <= 45)
     $celsius = $celsius + 5;
 }
 
-
