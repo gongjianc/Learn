@@ -1,0 +1,7 @@
+INFO      Sep 21 17:10:50 [34175]: Initializing tinyproxy ...
+INFO      Sep 21 17:10:50 [34175]: Reloading config file
+INFO      Sep 21 17:10:50 [34175]: Added address [192.168.145.64] to listen addresses.
+INFO      Sep 21 17:10:50 [34175]: Binding outgoing connection to incoming IP
+INFO      Sep 21 17:10:50 [34175]: Setting "Via" header to 'tinyproxy'
+INFO      Sep 21 17:10:50 [34175]: Adding Port [443] to the list allowed by CONNECT
+INFO      Sep 21 17:10:50 [34175]: Adding Port [563] to the list allowed by CONNECT
