@@ -11,27 +11,27 @@
 
 struct msg_st
 {
-	long int msg_type;
-	char text[BUFSIZ];
+    long int msg_type;
+    char text[BUFSIZ];
 };
 
 int main()
 {
-	int running = 1;
-	int msgid = -1;
-	struct msg_st data;
+    int running = 1;
+    int msgid = -1;
+    struct msg_st data;
     char buffer[BUFSIZ];
 
-	//建立消息队列
-	msgid = msgget((key_t)1234, 0666 | IPC_CREAT);
-	if(msgid == -1)
-	{
+    //建立消息队列
+    msgid = msgget((key_t)1234, 0666 | IPC_CREAT);
+    if(msgid == -1)
+    {
         perror("msgget");
-		exit(EXIT_FAILURE);
-	}
-	//从队列中获取消息，直到遇到end消息为止
-	while(running)
-	{
+        exit(EXIT_FAILURE);
+    }
+    //从队列中获取消息，直到遇到end消息为止
+    while(running)
+    {
         printf("Enter some text: ");
         fgets(buffer, BUFSIZ, stdin);
         data.msg_type = 1;
@@ -43,6 +43,6 @@ int main()
         if(strncmp(buffer, "end", 3) == 0)
             running = 0;
         sleep(1);
-	}
-	exit(EXIT_SUCCESS);
+    }
+    exit(EXIT_SUCCESS);
 }

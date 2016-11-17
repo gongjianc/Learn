@@ -3,4 +3,5 @@
 
 int main()
 {
-    char errBuf[
+    return 0;
+}
